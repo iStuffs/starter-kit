@@ -17,7 +17,7 @@ var gulp         = require('gulp'),
 
 /* tasks declaration*/
 gulp.task('cssTask', function () {
-  return gulp.src('./src/sass/*.scss')
+  return gulp.src('./src/sass/**/*.sass')
   .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
   .pipe(sourcemaps.init())
   .pipe(sass().on('error', sass.logError))
@@ -64,7 +64,7 @@ gulp.task('refresh', function() {
 
 /* default task and watch */
 gulp.task('watch', ['cssTask', 'jsTask', 'htmlTask', 'refresh', 'compression'], function () {
-  gulp.watch('./src/sass/*/*.scss', ['cssTask']);
+  gulp.watch('./src/sass/**/*.sass', ['cssTask']);
   gulp.watch('./src/js/*.js', ['jsTask']);
   gulp.watch('./src/*.html', ['htmlTask']);
   gulp.watch('./dist/*.html').on('change', browserSync.reload);
