@@ -1,5 +1,5 @@
 {
-  "name": "starter-Kit",
+  "name": "starter-kit",
   "version": "0.0.1",
   "description": "starter kit",
   "main": "gulpfile.js",
@@ -8,8 +8,10 @@
     "url": "https://github.com/iStuffs/starter-kit.git"
   },
   "scripts": {
-    "gulp": "gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gulp-build": "NODE_ENV='production' gulp dist",
+    "gulp": "NODE_ENV='development' gulp",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gh-pages": "git subtree push --prefix dist origin gh-pages"
   },
   "author": "iStuffs: Samuel DIDIER-LAURENT",
   "license": "ISC",
@@ -28,6 +30,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.2",
-    "gulp-uglify": "^3.0.0"
+    "gulp-uglify": "^3.0.0",
+    "gulp-zip": "^4.0.0"
   }
 }

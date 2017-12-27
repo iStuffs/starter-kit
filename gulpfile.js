@@ -1,23 +1,24 @@
 /* gulp plugins variables*/
 
-var gulp         = require('gulp'),
-    sass         = require('gulp-sass'),
-    autoprefixer = require('gulp-autoprefixer'),
-    rename       = require('gulp-rename'),
-    cleanCss     = require('gulp-clean-css'),
-    htmlMin      = require('gulp-htmlmin'),
-    uglify       = require('gulp-uglify'),
-    browserSync  = require('browser-sync'),
-    sourcemaps   = require('gulp-sourcemaps'),
-    imagemin     = require('gulp-imagemin'),
-    babel        = require('gulp-babel'),
-    plumber      = require('gulp-plumber'),
-    notify       = require("gulp-notify");
+const gulp         = require('gulp'),
+      sass         = require('gulp-sass'),
+      autoprefixer = require('gulp-autoprefixer'),
+      rename       = require('gulp-rename'),
+      cleanCss     = require('gulp-clean-css'),
+      htmlMin      = require('gulp-htmlmin'),
+      uglify       = require('gulp-uglify'),
+      browserSync  = require('browser-sync'),
+      sourcemaps   = require('gulp-sourcemaps'),
+      imagemin     = require('gulp-imagemin'),
+      babel        = require('gulp-babel'),
+      plumber      = require('gulp-plumber'),
+      notify       = require("gulp-notify"),
+      zip          = require('gulp-zip');
 
 
 /* tasks declaration*/
 gulp.task('cssTask', function () {
-  return gulp.src('./src/sass/**/*.sass')
+  return gulp.src('./src/sass/**/*.{sass,scss}')
   .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
   .pipe(sourcemaps.init())
   .pipe(sass().on('error', sass.logError))
@@ -48,23 +49,30 @@ gulp.task('jsTask', function() {
   .pipe(rename(function(path){ path.basename += ".min"; }))
   .pipe(gulp.dest('./dist/js'));
 });
-gulp.task('compression', function() {
-      return gulp.src('src/img/*.{gif,jpg,png,svg,jpeg}')
-      .pipe(imagemin())
-      .pipe(gulp.dest('dist/img'));
+gulp.task('imgTask', function() {
+  return gulp.src('src/img/*.{gif,jpg,png,svg,jpeg}')
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/img'));
+});
+
+gulp.task('compress', function() {
+  return gulp.src('dist/**/*')
+    .pipe(zip(process.env.npm_package_name + '.zip'))
+    .pipe(gulp.dest('./'))
 });
 
 gulp.task('refresh', function() {
   browserSync.init({
     server: {
       baseDir: "./dist/"
-    }
+    },
+    port: '8080'
   });
 });
 
 /* default task and watch */
-gulp.task('watch', ['cssTask', 'jsTask', 'htmlTask', 'refresh', 'compression'], function () {
-  gulp.watch('./src/sass/**/*.sass', ['cssTask']);
+gulp.task('watch', ['cssTask', 'jsTask', 'htmlTask', 'refresh', 'imgTask'], function () {
+  gulp.watch('./src/sass/**/*.{sass,scss}', ['cssTask']);
   gulp.watch('./src/js/*.js', ['jsTask']);
   gulp.watch('./src/*.html', ['htmlTask']);
   gulp.watch('./dist/*.html').on('change', browserSync.reload);
