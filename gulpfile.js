@@ -13,14 +13,16 @@ const gulp         = require('gulp'),
       babel        = require('gulp-babel'),
       plumber      = require('gulp-plumber'),
       notify       = require("gulp-notify"),
-      zip          = require('gulp-zip');
+      zip          = require('gulp-zip'),
+      gulpif       = require('gulp-if'),
+      argv         = require('yargs').argv;
 
 
 /* tasks declaration*/
 gulp.task('cssTask', function () {
   return gulp.src('./src/sass/**/*.{sass,scss}')
   .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-  .pipe(sourcemaps.init())
+  .pipe(gulpif(!argv.production, sourcemaps.init()))
   .pipe(sass().on('error', sass.logError))
   .pipe(autoprefixer({
       browsers: ['last 6 versions'],
@@ -30,14 +32,14 @@ gulp.task('cssTask', function () {
     compatibility: 'ie8'
   }))
   .pipe(rename(function(path){ path.basename += ".min"; }))
-  .pipe(sourcemaps.write('.'))
+  .pipe(gulpif(!argv.production, sourcemaps.write('.')))
   .pipe(gulp.dest('./dist/css'));
 });
 
 gulp.task('htmlTask', function() {
   return gulp.src('src/*.html')
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-    .pipe(htmlMin({collapseWhitespace: true}))
+    .pipe(gulpif(argv.production, htmlMin({collapseWhitespace: true})))
     .pipe(gulp.dest('dist'));
 });
 
@@ -45,7 +47,7 @@ gulp.task('jsTask', function() {
   return gulp.src('./src/js/*.js')
   .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
   .pipe(babel({ presets: ['es2015'] }))
-  .pipe(uglify())
+  .pipe(gulpif(argv.production, uglify()))
   .pipe(rename(function(path){ path.basename += ".min"; }))
   .pipe(gulp.dest('./dist/js'));
 });

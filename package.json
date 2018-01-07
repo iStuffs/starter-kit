@@ -1,16 +1,25 @@
 {
-  "name": "starter-kit",
+  "name": "front-end-dev-starter-kit",
   "version": "0.0.1",
   "description": "starter kit",
   "main": "gulpfile.js",
   "scripts": {
-    "gulp-build": "NODE_ENV='production' gulp dist",
-    "gulp": "NODE_ENV='development' gulp",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "gh-pages": "git subtree push --prefix dist origin gh-pages"
+    "start": "gulp",
+    "starter": "npm run git-remove && npm install && npm init && npm run git-start && npm init -y",
+    "git-start": "npm run git-init && npm run github-create && npm run git-remote-add",
+    "git-remove": "rm -rf .git",
+    "git-init": "git init",
+    "github-create": "curl -u \"$npm_package_gitUser\" https://api.github.com/user/repos -d '{\"name\":\"'$npm_package_name'\"}'",
+    "git-remote-add": "git remote add origin https://github.com/$npm_package_gitUser/$npm_package_name.git",
+    "gh-pages": "git subtree push --prefix dist origin gh-pages",
+    "gulp-build": "gulp dist",
+    "gulp": "gulp",
+    "gulp-prod": "gulp --production",
+    "deploy": "npm run gulp-build && npm run gh-pages"
   },
+  "gitUser": "iStuffs",
   "author": "iStuffs: Samuel DIDIER-LAURENT <istuffs@gmail.com> (https://istuffs.be)",
-  "license": "ISC",
+  "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
@@ -20,6 +29,7 @@
     "gulp-babel": "^7.0.0",
     "gulp-clean-css": "^3.9.0",
     "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.2",
     "gulp-imagemin": "^4.0.0",
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
@@ -27,7 +37,8 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.2",
     "gulp-uglify": "^3.0.0",
-    "gulp-zip": "^4.0.0"
+    "gulp-zip": "^4.0.0",
+    "yargs": "^10.0.3"
   },
   "directories": {
     "doc": "docs"
