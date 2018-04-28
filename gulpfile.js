@@ -46,7 +46,7 @@ gulp.task('htmlTask', function() {
 gulp.task('jsTask', function() {
   return gulp.src('./src/js/*.js')
   .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-  .pipe(babel({ presets: ['es2015'] }))
+  .pipe(babel({ presets: ['env'] }))
   .pipe(gulpif(argv.production, uglify()))
   .pipe(rename(function(path){ path.basename += ".min"; }))
   .pipe(gulp.dest('./dist/js'));
