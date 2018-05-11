@@ -1,0 +1,38 @@
+{
+    "extends": "airbnb-base",
+    "globals": {
+        "Alchemy": true,
+        "window": true,
+        "document": true,
+        "requestAnimationFrame": true,
+        "fetch": true,
+        "CustomEvent": true,
+        "Headers": true,
+        "FormData": true,
+    },
+    "rules": {
+        "key-spacing": 0,
+        "max-len": 0,
+        "no-unused-vars": 0,
+        "no-mixed-operators": 0,
+        "no-plusplus": 0,
+        "no-param-reassign": 0,
+        "no-underscore-dangle": 0,
+        "no-restricted-syntax": 0,
+        "quote-props": ["error", "as-needed"],
+        "no-use-before-define": [
+            "error", {
+                "functions": false,
+                "classes": false
+                }
+        ],
+        "no-useless-constructor": 0,
+        "no-useless-escape": 0,
+        "no-multi-spaces": 0,
+        "indent": ["error", 4],
+        "class-methods-use-this": 0,
+        "import/extensions": 0,
+        "import/no-extraneous-dependencies": 0,
+        "import/no-unresolved": 0,
+    }
+}
