@@ -14,6 +14,7 @@ const babel        = require('gulp-babel');
 const plumber      = require('gulp-plumber');
 const notify       = require('gulp-notify');
 const zip          = require('gulp-zip');
+const rm          = require('rimraf');
 const gulpif       = require('gulp-if');
 const { argv }     = require('yargs');
 
@@ -62,6 +63,10 @@ gulp.task('compress', () => {
     gulp.src('dist/**/*')
         .pipe(zip(`${process.env.npm_package_name}.zip`))
         .pipe(gulp.dest('./'));
+});
+
+gulp.task('cleanDist', (done) => {
+    rm('./dist/', done);
 });
 
 gulp.task('refresh', () => {

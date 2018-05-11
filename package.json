@@ -7,7 +7,7 @@
     "start": "gulp",
     "starter": "npm run git-remove && npm install && npm init && npm run git-start && npm init -y",
     "git-start": "npm run git-init && npm run github-create && npm run git-remote-add",
-    "git-remove": "rm -rf .git",
+    "git-remove": "rimraf .git",
     "git-init": "git init",
     "github-create": "curl -u \"$npm_package_gitUser\" https://api.github.com/user/repos -d '{\"name\":\"'$npm_package_name'\"}'",
     "git-remote-add": "git remote add origin https://github.com/$npm_package_gitUser/$npm_package_name.git",
@@ -41,6 +41,7 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulp-zip": "^4.1.0",
+    "rimraf": "^2.6.2",
     "yargs": "^11.0.0"
   },
   "directories": {
