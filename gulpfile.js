@@ -14,7 +14,7 @@ const babel        = require('gulp-babel');
 const plumber      = require('gulp-plumber');
 const notify       = require('gulp-notify');
 const zip          = require('gulp-zip');
-const rm          = require('rimraf');
+const rm           = require('rimraf');
 const gulpif       = require('gulp-if');
 const { argv }     = require('yargs');
 
