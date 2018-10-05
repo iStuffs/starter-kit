@@ -1,7 +1,6 @@
 {
     "extends": "airbnb-base",
     "globals": {
-        "Alchemy": true,
         "window": true,
         "document": true,
         "requestAnimationFrame": true,
