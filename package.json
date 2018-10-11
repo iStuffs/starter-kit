@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
-    "starter": "npm run git-remove && npm install && npm init && npm run git-start",
+    "starter": "npm install && npm run git-remove && npm init && npm run git-start",
     "git-start": "npm run git-init && npm run github-create && npm run git-remote-add",
     "git-remove": "rimraf .git",
     "git-init": "git init",
