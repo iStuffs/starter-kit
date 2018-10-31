@@ -17,6 +17,7 @@ const zip          = require('gulp-zip');
 const rm           = require('rimraf');
 const gulpif       = require('gulp-if');
 const { argv }     = require('yargs');
+const eyeglass     = require('eyeglass');
 
 
 /* tasks declaration */
@@ -24,7 +25,7 @@ function cssTask() {
     return gulp.src('./src/sass/**/*.{sass,scss}')
         .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
         .pipe(gulpif(!argv.production, sourcemaps.init()))
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass(eyeglass()).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 6 versions'],
             cascade: false,

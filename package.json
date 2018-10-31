@@ -26,6 +26,7 @@
     "eslint": "^5.8.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "eyeglass": "^1.6.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-babel": "^8.0.0",
@@ -46,7 +47,11 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap-reboot-importer": "^1.0.0",
+    "bourbon": "^5.1.0",
+    "sassy-normalize": "^8.0.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iStuffs/starter-kit.git"
