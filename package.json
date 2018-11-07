@@ -52,9 +52,9 @@
     "doc": "docs"
   },
   "dependencies": {
-    "bootstrap-reboot-importer": "^1.0.0",
+    "bootstrap-reboot-importer": "^1.0.1",
     "bourbon": "^5.1.0",
-    "sassy-normalize": "^8.0.2"
+    "sassy-normalize": "^8.0.3"
   },
   "repository": {
     "type": "git",
