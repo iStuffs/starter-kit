@@ -18,6 +18,9 @@ const rm           = require('rimraf');
 const gulpif       = require('gulp-if');
 const { argv }     = require('yargs');
 const eyeglass     = require('eyeglass');
+const webpackStream = require('webpack-stream');
+const webpack = require('webpack');
+const named = require('vinyl-named');
 
 
 /* tasks declaration */
@@ -45,12 +48,30 @@ function htmlTask() {
         .pipe(gulp.dest('dist'));
 }
 
+const webpackConfig = {
+    mode: (argv.production ? 'production' : 'development'),
+    module: {
+        rules: [{
+            test: /.js$/,
+            use: [{
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env'],
+                    compact: false,
+                },
+            }],
+        }],
+    },
+    devtool: !argv.production && 'source-map',
+};
 function jsTask() {
-    return gulp.src('./src/js/*.js')
+    return gulp.src('./src/js/**/*.js')
+        .pipe(named())
         .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
-        .pipe(babel({ presets: ['env'] }))
+        .pipe(gulpif(!argv.production, sourcemaps.init()))
+        .pipe(webpackStream(webpackConfig, webpack))
         .pipe(gulpif(argv.production, uglify()))
-        .pipe(rename((path) => { path.basename += '.min'; }))
+        .pipe(gulpif(!argv.production, sourcemaps.write('.')))
         .pipe(gulp.dest('./dist/js'));
 }
 
