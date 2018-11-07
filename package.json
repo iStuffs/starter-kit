@@ -33,7 +33,7 @@
     "gulp-clean-css": "^3.10.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^4.1.0",
+    "gulp-imagemin": "^5.0.3",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.0",
     "gulp-rename": "^1.4.0",
