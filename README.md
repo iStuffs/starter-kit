@@ -2,24 +2,17 @@
 ![](docs/img/starter-kit_header.png)
 A npm / gulp kick start template for fast and modern front-end development.
 
+**Featues**:
 
-**All the gulp plugins**:
-
--   [Autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
--   [Babel](https://www.npmjs.com/package/gulp-babel)
--   [Browser sync](https://www.npmjs.com/package/browser-sync)
--   [Clean CSS](https://www.npmjs.com/package/gulp-clean-css)
--   [Gulp](https://www.npmjs.com/package/gulp)
--   [Html min](https://www.npmjs.com/package/gulp-htmlmin)
--   [Image min](https://www.npmjs.com/package/gulp-imagemin)
--   [Notify](https://www.npmjs.com/package/gulp-notify)
--   [Plumber](https://www.npmjs.com/package/gulp-plumber)
--   [rename](https://www.npmjs.com/package/gulp-rename)
--   [Sass](https://www.npmjs.com/package/gulp-sass)
--   [Source maps](https://www.npmjs.com/package/gulp-sourcemaps)
--   [Uglify](https://www.npmjs.com/package/gulp-uglify)
--   [zip](https://www.npmjs.com/package/zip)
-
+-   Sass compilation with [gulp-sass](https://www.npmjs.com/package/gulp-sass)
+-   Es6 transpilation with [babel-loader](https://www.npmjs.com/package/babel-loader)
+-   JavaScript exports with [webpack](https://webpack.js.org/)
+-   Auto-refresh browser with [browser sync](https://www.npmjs.com/package/browser-sync)
+-   [Source maps](https://www.npmjs.com/package/gulp-sourcemaps) in dev mode
+-   Minification in production ([Clean CSS](https://www.npmjs.com/package/gulp-clean-css) and [Uglify](https://www.npmjs.com/package/gulp-uglify))
+-   Autoprefix CSS with [Autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
+-   Better errors message in gulp with [Plumber](https://www.npmjs.com/package/gulp-plumber) and [Notify](https://www.npmjs.com/package/gulp-notify)
+-   Compress images with [Image min](https://www.npmjs.com/package/gulp-imagemin)
 
 **The SASS folder structure**:
 
@@ -41,20 +34,39 @@ sass/
 ## What you need ?
 
 You first need to have [node.js](https://nodejs.org/en/) installed.
-
+You should use [git](https://git-scm.com/) with your project.
 
 ## How to use
 
-1.  Customise the package.json infos.
-
-2.  To install local dependencies you need to run
-
-```
-npm install
+1. Clone it
+```bash
+git clone https://github.com/iStuffs/starter-kit.git my-new-project
 ```
 
-3.  Then run gulp
-
+2. Update your github user in the package.json
+```json
+...
+"gitUser": "Your-GitHubUserName",
+...
 ```
-npm run gulp
+
+3. kickstart your project
+```bash
+cd my-new-project
+npm run starter
+```
+
+4. Develop awesome things
+```bash
+npm start
+```
+
+5. Build assets for production
+```bash
+npm run build
+```
+
+6. Deploy on git hub pages
+```bash
+npm run deploy
 ```
