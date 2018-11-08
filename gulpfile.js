@@ -101,8 +101,10 @@ function refresh(done) {
     done();
 }
 
+gulp.task('build', gulp.series(cssTask, jsTask, htmlTask, imgTask));
+
 /* default task and watch */
-gulp.task('watch', gulp.series(cssTask, jsTask, htmlTask, refresh, imgTask, () => {
+gulp.task('watch', gulp.series('build', refresh, () => {
     gulp.watch('./src/sass/**/*.{sass,scss}', gulp.series(cssTask));
     gulp.watch('./src/js/*.js', gulp.series(jsTask));
     gulp.watch('./src/*.html', gulp.series(htmlTask));
@@ -111,4 +113,4 @@ gulp.task('watch', gulp.series(cssTask, jsTask, htmlTask, refresh, imgTask, () =
     gulp.watch('./dist/js/*.js').on('change', browserSync.reload);
 }));
 
-gulp.task('default', gulp.series('watch'));
+gulp.task('default', gulpif(argv.production, gulp.series('build'), gulp.series('watch')));
