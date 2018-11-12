@@ -1,0 +1,41 @@
+////
+/// Variables
+////
+
+/// @group variables/colors
+
+// named colors
+// -----
+$light: white;
+$dark: black;
+$blue: #007bff;
+$yellow: #ffc107;
+$gray: #6c757d;
+$green: #28a745;
+$cyan: #17a2b8;
+$red: #dc3545;
+
+
+// semantic colors
+$color-primary: $blue;
+$color-secondary: $gray;
+$color-success: $green;
+$color-info: $cyan;
+$color-warning: $yellow;
+$color-danger: $red;
+
+$color-font: $dark;
+$color-background: $light;
+$color-foreground: $gray;
+
+$colors: (
+    'primary': $color-primary,
+    'secondary': $color-secondary,
+    'success': $color-success,
+    'info': $color-info,
+    'warning': $color-warning,
+    'danger': $color-danger,
+    'font': $color-font,
+    'background': $color-background,
+    'foreground': $color-foreground
+);

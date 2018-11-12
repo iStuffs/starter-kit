@@ -1,0 +1,17 @@
+/// Test if map got all `$keys` nested with each others
+/// @author Hugo Giraudel
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Keys to test
+/// @return {Bool}
+
+@function map-has-nested-keys($map, $keys...) {
+    @each $key in $keys {
+        @if not map-has-key($map, $key) {
+            @return false;
+        }
+
+        $map: map-get($map, $key);
+    }
+
+    @return true;
+}

@@ -18,16 +18,20 @@ A npm / gulp kick start template for fast and modern front-end development.
 
 ```
 sass/
-├── base/
-│   ├── _reset.sass
-│   └── _typography.sass
 ├── helpers/
-│   ├── _mixins.sass
-│   └── _variables.sass
+│   ├── _variables.scss
+│   ├── _bourbon.scss
+│   ├── _functions.scss
+│   └── _mixins.scss
+├── base/
+│   ├── _reset.scss
+│   └── _typography.scss
+├── components/
+│   └── ...
 ├── layout/
-│   ├── _footer.sass
-│   ├── _global.sass
-│   └── _header.sass
+│   ├── _footer.scss
+│   ├── _global.scss
+│   └── _header.scss
 └── style.sass
 ```
 

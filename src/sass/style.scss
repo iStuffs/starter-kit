@@ -1,13 +1,21 @@
-// Base
-@import 'base/reset';
-@import 'base/typography';
+////
+/// Main stylesheet scss file
+///
+/// @author Samuel DIDIER-LAURENT
+////
 
 // Helpers
-@import 'helpers/vendors';
-@import 'helpers/variables';
-@import 'helpers/mixins';
+@import '1_helpers/variables.scss';
+@import '1_helpers/bourbon.scss';
+@import '1_helpers/functions.scss';
+@import '1_helpers/mixins.scss';
+
+// Base
+@import '2_base/reset';
+@import '2_base/typography';
+
+// Components
+@import '3_components/*.scss';
 
 // Layout
-@import 'layout/global';
-@import 'layout/header';
-@import 'layout/footer';
+@import '4_layout/*.scss';

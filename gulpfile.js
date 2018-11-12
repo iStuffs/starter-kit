@@ -21,13 +21,14 @@ const eyeglass = require('eyeglass');
 const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const named = require('vinyl-named');
-
+const sassGlob = require('gulp-sass-glob');
 
 /* tasks declaration */
 function cssTask() {
     return gulp.src('./src/sass/**/*.{sass,scss}')
         .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
         .pipe(gulpif(!argv.production, sourcemaps.init()))
+        .pipe(sassGlob())
         .pipe(sass(eyeglass()).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 6 versions'],
@@ -113,4 +114,4 @@ gulp.task('watch', gulp.series('build', refresh, () => {
     gulp.watch('./dist/js/*.js').on('change', browserSync.reload);
 }));
 
-gulp.task('default', gulpif(argv.production, gulp.series('build'), gulp.series('watch')));
+gulp.task('default', argv.production ? gulp.series('build') : gulp.series('watch'));
