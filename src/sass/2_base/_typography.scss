@@ -1,3 +1,5 @@
+@charset 'UTF-8';
+
 ////
 /// Reset
 /// Choose either normalize or boostrap reboot
@@ -20,5 +22,4 @@ $font-family-system: -apple-system, system, /* 1 */
     "Segoe UI", /* 3 */
     Roboto, /* 4 */
     sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" /* 5 */
-    !default;
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default; /* 5 */
