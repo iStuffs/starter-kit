@@ -1,0 +1,40 @@
+@charset 'UTF-8';
+
+///
+/// Replaces value at `$index` from `$list` by `$value`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-replace-nth
+///
+/// @requires list-purge
+/// @requires is-true
+/// @requires list-to-list
+///
+/// @param {List}   $list  - list to update
+/// @param {Number} $index - index to update
+/// @param {*}      $value - new value for index
+///
+/// @throws Invalid index $index for `list-replace-nth`.
+///
+/// @example
+/// list-replace-nth(a b c, 2, z)
+/// // a z c
+///
+/// @example
+/// list-replace-nth(a b c, 100, z)
+/// // null
+///
+/// @return {List | Null}
+///
+
+@function list-replace-nth($list, $index, $value) {
+    $_: missing-dependencies('list-purge', 'is-true', 'list-to-list');
+
+    @if type-of($index) !='number'or $index==0 or abs($index)>length($list) {
+        @error 'Invalid index (#{inspect($index)}) for `list-replace-nth`.';
+    }
+
+    $list: set-nth($list, $index, $value);
+    $list: if(is-true($value), $list, list-purge($list));
+
+    @return list-to-list($list);
+}

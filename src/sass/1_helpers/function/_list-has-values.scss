@@ -1,0 +1,22 @@
+@charset 'UTF-8';
+
+/// Tests whether `$list` is not empty.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-has-values
+///
+/// @param {List} $list - list to run test against
+///
+/// @example
+/// list-has-values(a)
+/// // true
+///
+/// @example
+/// list-has-values(())
+/// // false
+///
+/// @return {Bool}
+///
+
+@function list-has-values($list) {
+    @return length($list)>0;
+}

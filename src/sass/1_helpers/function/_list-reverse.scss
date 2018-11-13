@@ -1,0 +1,36 @@
+@charset 'UTF-8';
+
+///
+/// Reverses the order of `$list`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-reverse
+///
+/// @param {List} $list - list to reverse
+///
+/// @requires list-to-list
+///
+/// @example
+/// list-reverse(a b c)
+/// // c b a
+///
+/// @return {List}
+///
+
+@function list-reverse($list) {
+    $_: missing-dependencies('list-to-list');
+
+    $length: length($list);
+    $end: floor($length / 2);
+
+    @if $length < 2 {
+        @return $list;
+    }
+
+    @for $i from 1 through $end {
+        $tmp: nth($list, $i);
+        $list: set-nth($list, $i, nth($list, -$i));
+        $list: set-nth($list, -$i, $tmp);
+    }
+
+    @return list-to-list($list);
+}

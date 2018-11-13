@@ -1,0 +1,68 @@
+@charset 'UTF-8';
+
+///
+/// Explodes `$string` into a list using `$delimiter` as a delimiter.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-explode
+///
+/// @param {String} $string              - string to explode
+/// @param {String} $delimiter ['']      - string to use as a delimiter
+/// @param {String} $separator ['space'] - list separator
+///
+/// @throws $string is not a string for `list-explode`.
+/// @throws $delimiter is not a string for `list-explode`.
+///
+/// @example
+/// list-explode(abc)
+/// // a b c
+///
+/// @example
+/// list-explode(abc, b)
+/// // a c
+///
+/// @return {List | Null}
+///
+
+@function list-explode($string, $delimiter: '', $separator: 'space') {
+    @if type-of($string) !='string' {
+        @error '`list-explode` function expecting a string; #{type-of($string)} given.';
+    }
+
+    @if type-of($delimiter) !='string' {
+        @error '`list-explode` function expecting a string; #{type-of($delimiter)} given.';
+    }
+
+    $result: ();
+    $length: str-length($string);
+
+    @if not index('space''comma', $separator) {
+        $separator: 'space';
+    }
+
+    @if str-length($delimiter)==0 {
+        @for $i from 1 through $length {
+            $result: append($result, str-slice($string, $i, $i));
+        }
+
+        @return $result;
+    }
+
+    $running: true;
+    $remaining: $string;
+
+    @while $running {
+        $index: str-index($remaining, $delimiter);
+
+        @if not $index {
+            $running: false;
+        }
+
+        @else {
+            $slice: str-slice($remaining, 1, $index - 1);
+            $result: append($result, $slice, $separator);
+            $remaining: str-slice($remaining, $index + str-length($delimiter));
+        }
+    }
+
+    @return append($result, $remaining, $separator);
+}

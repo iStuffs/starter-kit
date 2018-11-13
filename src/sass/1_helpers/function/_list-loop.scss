@@ -1,0 +1,47 @@
+@charset 'UTF-8';
+
+///
+/// Shift indexes from `$list` of `$value`.
+///
+/// @author Ana Tudor
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-loop
+///
+/// @param {List}   $list      - list to update
+/// @param {Number} $value [1] - number of position between old and new indexes
+///
+/// @throws $value is not a number for `loop`.
+///
+/// @requires list-has-multiple-values
+///
+/// @example
+/// list-loop(a b c)
+/// // c a b
+///
+/// @example
+/// list-loop(a b c, 2)
+/// // b c a
+///
+/// @return {List | Null}
+///
+
+@function list-loop($list, $value: 1) {
+    $_: missing-dependencies('list-has-multiple-values');
+
+    @if type-of($value) !='number' {
+        @error '#{inspect($value)} is not a number for `list-loop`.';
+    }
+
+    @if not list-has-multiple-values($list) {
+        @return $list;
+    }
+
+    $result: ();
+    $length: length($list);
+
+    @for $i from 0 to $length {
+        $result: append($result, nth($list, ($i - $value) % $length + 1), list-separator($list));
+    }
+
+    @return $result;
+}

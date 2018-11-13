@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-to-map
+/// @alias list-to-map
+///
+
+@function list-enumerate($list) {
+    @return list-to-map($list);
+}

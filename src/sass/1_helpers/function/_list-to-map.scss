@@ -1,0 +1,35 @@
+@charset 'UTF-8';
+
+///
+/// Casts `$list` into a map, using indexes as keys (starting with `$start`).
+/// Useful for iterating through a list with an index variable.
+/// e.g. `@each $index, $value in to-map($list)`
+///
+/// @author Andrey “Lolmaus” Mikhaylov
+/// @author Chris Eppstein
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-to-map
+///
+/// @param {List} $list - list to turn into map
+///
+/// @requires list-range
+/// @requires list-is-empty
+///
+/// @throws List cannot be empty for `list-to-map`.
+///
+/// @example
+/// list-to-map(a b c)
+/// // 1 a, 2 b, 3 c
+///
+/// @return {Map | Null}
+///
+
+@function list-to-map($list) {
+    $_: missing-dependencies('list-range', 'list-is-empty');
+
+    @if list-is-empty($list) {
+        @error 'List cannot be empty for `list-to-map`.';
+    }
+
+    @return zip(list-range(length($list)), $list);
+}

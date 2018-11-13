@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-shuffle
+/// @alias list-shuffle
+///
+
+@function list-randomize($list) {
+    @return list-shuffle($list);
+}

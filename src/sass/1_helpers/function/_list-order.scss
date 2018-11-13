@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-sort
+/// @alias list-sort
+///
+
+@function list-order($list) {
+    @return list-sort($list);
+}

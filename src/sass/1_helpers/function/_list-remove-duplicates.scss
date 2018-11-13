@@ -1,0 +1,31 @@
+@charset 'UTF-8';
+
+///
+/// Removes duplicate values from `$list`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-remove-duplicates
+///
+/// @param {List} $list - list to remove duplicates from
+///
+/// @requires list-to-list
+///
+/// @example
+/// list-remove-duplicates(a b a b)
+/// // a b
+///
+/// @return {List}
+///
+
+@function list-remove-duplicates($list) {
+    $_: missing-dependencies('list-to-list');
+
+    $result: ();
+
+    @each $item in $list {
+        @if not index($result, $item) {
+            $result: append($result, $item, list-separator($list));
+        }
+    }
+
+    @return list-to-list($result);
+}

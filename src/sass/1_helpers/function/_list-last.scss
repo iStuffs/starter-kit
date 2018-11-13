@@ -1,0 +1,37 @@
+@charset 'UTF-8';
+
+///
+/// Returns last element of `$list`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-last
+///
+/// @param {List} $list - list to retrieve last value from
+///
+/// @throws Cannot find last item of empty list.
+///
+/// @requires list-is-empty
+///
+/// @example
+/// list-last(a b c)
+/// // c
+///
+/// @example
+/// list-last(a)
+/// // a
+///
+/// @example
+/// list-last(())
+/// // null
+///
+/// @return {*}
+///
+
+@function list-last($list) {
+    $_: missing-dependencies('list-is-empty');
+
+    @if list-is-empty($list) {
+        @error 'Cannot find last item of empty list.';
+    }
+
+    @return nth($list, -1);
+}

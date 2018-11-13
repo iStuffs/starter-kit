@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-remove
+/// @alias list-remove
+///
+
+@function list-without($list, $value) {
+    @return list-remove($list, $value);
+}

@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-is-empty
+/// @alias list-is-empty
+///
+
+@function list-empty($list) {
+    @return list-is-empty($list);
+}

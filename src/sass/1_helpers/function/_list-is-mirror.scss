@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-is-symmetrical
+/// @alias list-is-symmetrical
+///
+
+@function list-is-mirror($list) {
+    @return list-is-symmetrical($list);
+}

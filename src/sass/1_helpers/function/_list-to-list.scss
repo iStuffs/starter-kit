@@ -1,0 +1,20 @@
+@charset 'UTF-8';
+
+///
+/// Casts `$value` into a list.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-to-list
+///
+/// @param {*} $value - value to cast to list
+/// @param {String} $separator [space] - separator to use
+///
+/// @example
+/// list-to-list(a b c, comma)
+/// // a, b, c
+///
+/// @return {List}
+///
+
+@function list-to-list($value, $separator: list-separator($value)) {
+    @return join((), $value, $separator);
+}

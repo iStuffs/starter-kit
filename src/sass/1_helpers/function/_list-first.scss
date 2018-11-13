@@ -1,0 +1,36 @@
+@charset 'UTF-8';
+
+/// Returns first element of `$list`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-first
+///
+/// @param {List} $list - list to retrieve first item from
+///
+/// @throws Cannot find first item of empty list.
+///
+/// @requires list-is-empty
+///
+/// @example
+/// list-first(a b c)
+/// // a
+///
+/// @example
+/// list-first(a)
+/// // a
+///
+/// @example
+/// list-first(())
+/// // null
+///
+/// @return {*}
+///
+
+@function list-first($list) {
+    $_: missing-dependencies('list-is-empty');
+
+    @if list-is-empty($list) {
+        @error 'Cannot find first item of empty list.';
+    }
+
+    @return nth($list, 1);
+}

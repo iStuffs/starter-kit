@@ -1,0 +1,29 @@
+@charset 'UTF-8';
+
+///
+/// Adds `$value` as first index of `$list`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-prepend
+///
+/// @requires list-is-true
+/// @requires list-to-list
+///
+/// @param {List} $list  - list to preprend value to
+/// @param {*}    $value - value to prepend to the list
+///
+/// @example
+/// list-prepend(a b c, z)
+/// // z a b c
+///
+/// @return {List}
+///
+
+@function list-prepend($list, $value) {
+    $_: missing-dependencies('list-is-true', 'list-to-list');
+
+    @if list-is-true($value) {
+        $list: join($value, $list, list-separator($list));
+    }
+
+    @return list-to-list($list);
+}

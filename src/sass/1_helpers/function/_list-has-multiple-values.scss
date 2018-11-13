@@ -1,0 +1,23 @@
+@charset 'UTF-8';
+
+///
+/// Tests whether `$list` has at least 2 values.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-has-multiple-values
+///
+/// @param {List} $list - list to run test against
+///
+/// @example
+/// list-has-multiple-values(a)
+/// // false
+///
+/// @example
+/// list-has-multiple-values(a b)
+/// // true
+///
+/// @return {Bool}
+///
+
+@function list-has-multiple-values($list) {
+    @return length($list)>1;
+}

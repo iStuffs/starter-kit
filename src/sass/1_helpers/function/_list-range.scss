@@ -1,0 +1,53 @@
+@charset 'UTF-8';
+
+///
+/// Build a list of values from 1 through `$n`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-range
+///
+/// @param {Number} $n - maximum value
+///
+/// @throws `$n` is not a number for `list-range`.
+/// @throws `$n` is not unitless for `list-range`.
+/// @throws `$n` is not greater than 0 for `list-range`.
+///
+/// @example
+/// list-range(5)
+/// // 1 2 3 4 5
+///
+/// @example
+/// list-range(1)
+/// // 1
+///
+/// @example
+/// list-range(-42)
+/// // null
+///
+/// @return {List | Number | Null}
+///
+
+@function list-range($n) {
+    @if type-of($n) !='number' {
+        @error '`#{inspect($n)}` is not a number for `list-range`.';
+    }
+
+    @if not unitless($n) {
+        @error '`#{$n}` is not unitless for `list-range`.';
+    }
+
+    @if $n < 1 {
+        @error '`#{$n}` is not greater than 0 for `list-range`.';
+    }
+
+    @if $n==1 {
+        @return $n;
+    }
+
+    $range: ();
+
+    @for $i from 1 through $n {
+        $range: append($range, $i);
+    }
+
+    @return $range;
+}

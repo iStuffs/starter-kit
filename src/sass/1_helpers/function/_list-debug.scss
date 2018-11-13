@@ -1,0 +1,110 @@
+@charset 'UTF-8';
+
+///
+/// Returns `$list` as a string, prettified if `$pre` is set to true.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#mixin-list-debug
+///
+/// @param {List}   $list          - list to debug
+/// @param {Bool}   $pre   [false] - enable/disable variables type and proper indentation
+/// @param {Number} $level [1]     - internal variable for recursion
+///
+/// @requires list-is-empty
+/// @requires list-is-single
+/// @requires list-has-multiple-values
+///
+/// @example
+/// list-debug(a b c)
+/// // '("a", "b", "c")'
+///
+/// @return {String}
+///
+
+@function list-debug($list, $pre: false, $level: 1) {
+    $_: missing-dependencies('list-is-empty', 'list-is-single', 'list-has-multiple-values');
+
+    @if list-is-empty($list) {
+        @return '( )';
+    }
+
+    @if list-is-single($list) {
+        @return if($pre, '('+ type-of($list) + ') ', '')+$list;
+    }
+
+    $tab: '    ';
+    $indent: '';
+    $break: if($pre, '\A ', '');
+    $length: length($list);
+
+    @for $i from 1 to $level {
+        $indent: $indent + $tab;
+    }
+
+    $result: '['+$break;
+
+    @for $i from 1 through $length {
+        $item: nth($list, $i);
+        $result: $result + if($pre, $indent + $tab, ' ');
+
+        @if list-has-multiple-values($item) {
+            $result: $result + if($pre, '(list: '+ length($item) + ') ', '') + list-debug($item, $pre, $level + 1);
+        }
+
+        @else {
+            @if $pre {
+                $result: $result + '('+ type-of($item) + ') ';
+            }
+
+            @if list-is-empty($item) {
+                $result: $result + '( )';
+            }
+
+            @else if type-of($item)=='string' {
+                $result: $result + quote($item);
+            }
+
+            @else if $item==null {
+                $result: $result + 'null';
+            }
+
+            @else {
+                $result: $result + $item;
+            }
+        }
+
+        @if $i !=$length {
+            $result: $result + ','+ $break;
+        }
+    }
+
+    $result: $result+$break+if($pre, if($level > 1, $indent, ''), ' ')+']';
+
+    @return quote($result);
+}
+
+///
+/// Mixin displaying clean debug
+///
+/// @param {List} $list - list
+///
+/// @requires list-debug
+///
+
+@mixin list-debug($list) {
+    body::before {
+        content: list-debug($list, true) !important;
+
+        display: block !important;
+        margin: 1em !important;
+        padding: .5em !important;
+
+        background: #EFEFEF !important;
+        border: 1px solid #DDD !important;
+        border-radius: .2em !important;
+
+        color: #333 !important;
+        font: .75em/1.5 'Courier New', monospace !important;
+        text-shadow: 0 1px white !important;
+        white-space: pre-wrap !important;
+    }
+}

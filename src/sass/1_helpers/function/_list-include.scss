@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-contain
+/// @alias list-contain
+///
+
+@function list-include($list, $value) {
+    @return list-contain($list, $value);
+}

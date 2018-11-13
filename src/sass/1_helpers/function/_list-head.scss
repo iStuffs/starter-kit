@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-first
+/// @alias list-first
+///
+
+@function list-head($list) {
+    @return list-first($list);
+}

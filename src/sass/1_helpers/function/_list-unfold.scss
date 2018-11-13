@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-flatten
+/// @alias list-flatten
+///
+
+@function list-unfold($list) {
+    @return list-flatten($list);
+}

@@ -1,0 +1,36 @@
+@charset 'UTF-8';
+
+///
+/// Shuffle `$list` using Fisher-Yates method.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-shuffle
+///
+/// @param {List} $list - list to shuffle
+///
+/// @requires list-to-list
+///
+/// @example
+/// list-shuffle(a b c)
+/// // b a c
+///
+/// @return {List}
+///
+
+@function list-shuffle($list) {
+    $_: missing-dependencies('list-to-list');
+
+    $length: length($list);
+
+    @if $length < 2 {
+        @return $list;
+    }
+
+    @for $i from $length through 1 {
+        $j: random($length - 1) + 1;
+        $tmp: nth($list, $i);
+        $list: set-nth($list, $i, nth($list, $j));
+        $list: set-nth($list, $j, $tmp);
+    }
+
+    @return list-to-list($list);
+}

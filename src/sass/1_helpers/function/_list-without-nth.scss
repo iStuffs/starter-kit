@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-remove-nth
+/// @alias list-remove-nth
+///
+
+@function list-without-nth($list, $index) {
+    @return list-remove-nth($list, $index);
+}

@@ -1,0 +1,27 @@
+@charset 'UTF-8';
+
+///
+/// Tests whether `$list` has a single item.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-is-single
+///
+/// @param {List} $list - list to run test against
+///
+/// @example
+/// list-is-single(())
+/// // false
+///
+/// @example
+/// list-is-single(a)
+/// // true
+///
+/// @example
+/// list-is-single(a b)
+/// // false
+///
+/// @return {Bool}
+///
+
+@function list-is-single($list) {
+    @return length($list)==1;
+}

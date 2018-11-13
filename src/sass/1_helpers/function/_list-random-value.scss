@@ -1,0 +1,29 @@
+@charset 'UTF-8';
+
+///
+/// Returns a random value of `$list`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-random-value
+///
+/// @param {List} $list - list to random value from
+///
+/// @throws Cannot find a random value in an empty list.
+///
+/// @requires list-is-empty
+///
+/// @example
+/// list-random-value(a b c)
+/// // a
+///
+/// @return {*}
+///
+
+@function list-random-value($list) {
+    $_: missing-dependencies('list-is-empty');
+
+    @if list-is-empty($list) {
+        @error 'Cannot find a random value in an empty list.';
+    }
+
+    @return nth($list, random(length($list)));
+}

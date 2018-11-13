@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-random-value
+/// @alias list-random-value
+///
+
+@function list-roll($list) {
+    @return list-random-value($list);
+}

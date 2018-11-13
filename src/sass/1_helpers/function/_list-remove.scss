@@ -1,0 +1,24 @@
+@charset 'UTF-8';
+
+///
+/// Removes value(s) `$value` from `$list`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-remove
+///
+/// @requires list-replace
+///
+/// @param {List}    $list      - list to update
+/// @param {*}       $value     - value to remove
+///
+/// @example
+/// list-remove(a b c, a)
+/// // b c
+///
+/// @return {List}
+///
+
+@function list-remove($list, $value) {
+    $_: missing-dependencies('list-replace');
+
+    @return list-replace($list, $value, null);
+}

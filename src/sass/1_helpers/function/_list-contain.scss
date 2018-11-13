@@ -1,0 +1,24 @@
+@charset 'UTF-8';
+
+///
+/// Returns whether `$list` contains `$value`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-contain
+///
+/// @param {List}    $list  - list to check
+/// @param {*}       $value - value to look for
+///
+/// @example
+/// list-contain(a b c, a)
+/// // true
+///
+/// @example
+/// list-contain(a b c, z)
+/// // false
+///
+/// @return {Bool}
+///
+
+@function list-contain($list, $value) {
+    @return not not index($list, $value);
+}

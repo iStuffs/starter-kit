@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-union
+/// @alias list-union
+///
+
+@function list-merge($lists...) {
+    @return list-union($lists...);
+}

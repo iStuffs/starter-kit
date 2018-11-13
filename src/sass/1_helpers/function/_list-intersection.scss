@@ -1,0 +1,39 @@
+///
+/// Returns a list of shared value from `$list` and `$lists` minus duplicates.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-intersection
+///
+/// @requires list-remove-duplicates
+/// @requires list-to-list
+///
+/// @param {List}    $list  - first list
+/// @param {ArgList} $lists - other lists
+@charset 'UTF-8';
+
+///
+/// @example
+/// list-intersection(a b c, b e d, a c b)
+/// // b
+///
+/// @return {List}
+///
+
+@function list-intersection($list, $lists...) {
+    $_: missing-dependencies('list-remove-duplicates');
+
+    $result: $list;
+
+    @each $list in $lists {
+        $temp: ();
+
+        @each $item in $result {
+            @if not not index($list, $item) {
+                $temp: append($temp, $item, list-separator($list));
+            }
+        }
+
+        $result: $temp;
+    }
+
+    @return list-remove-duplicates($result);
+}

@@ -1,0 +1,39 @@
+@charset 'UTF-8';
+
+///
+/// Turns multidimensional `$list` into a one-level list.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-flatten
+///
+/// @param {List} $list - list to flatten
+///
+/// @requires list-has-multiple-values
+///
+/// @example
+/// list-flatten(a b c, d e f, g h i)
+/// // a b c d e f g h i
+///
+/// @return {List}
+///
+
+@function list-flatten($list) {
+    $_: missing-dependencies('list-has-multiple-values');
+
+    $result: ();
+
+    @each $item in $list {
+        @if list-has-multiple-values($item) {
+            $flatten: list-flatten($item);
+
+            @each $i in $flatten {
+                $result: append($result, $i, list-separator($list));
+            }
+        }
+
+        @else {
+            $result: append($result, $item, list-separator($list));
+        }
+    }
+
+    @return $result;
+}

@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-reverse
+/// @alias list-reverse
+///
+
+@function list-mirror($list) {
+    @return list-reverse($list);
+}

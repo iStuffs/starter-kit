@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-to-string
+/// @alias list-to-string
+///
+
+@function list-stringify($list, $glue: '') {
+    @return list-to-string($list, $glue);
+}

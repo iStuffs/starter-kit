@@ -1,0 +1,26 @@
+@charset 'UTF-8';
+
+///
+/// Returns a list of values from `$lists` minus duplicates.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-union
+///
+/// @requires list-flatten
+/// @requires list-remove-duplicates
+///
+/// @param {ArgList} $lists - lists to unify
+///
+/// @example
+/// list-union(a b c, b e d, a c b)
+/// // a b c e d
+///
+/// @return {List}
+///
+
+@function list-union($lists...) {
+    $_: missing-dependencies('list-flatten', 'list-remove-duplicates');
+
+    $result: list-remove-duplicates(list-flatten($lists));
+
+    @return $result;
+}

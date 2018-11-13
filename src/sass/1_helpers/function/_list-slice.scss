@@ -1,0 +1,65 @@
+@charset 'UTF-8';
+
+///
+/// Slices `$list` between `$start` and `$end`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-slice
+///
+/// @param {List}   $list                  - list to slice
+/// @param {Number} $start [1]             - start index
+/// @param {Number} $end   [length[$list]] - end index
+///
+/// @throws List indexes $start and $end must be numbers for `list-slice`.
+/// @throws Start index has to be lesser than or equals to the end index for `list-slice`.
+/// @throws List indexes must be non-zero integers for `list-slice`.
+/// @throws Start index has to be lesser than or equal to list length for `list-slice`.
+/// @throws End index has to be lesser than or equal to list length for `list-slice`.
+///
+/// @example
+/// list-slice(a b c d e, 2, 4)
+/// // b c d
+///
+/// @example
+/// list-slice(a b c d e, 2, 2)
+/// // b
+///
+/// @example
+/// list-slice(a b c d e, 4, 2)
+/// // null
+///
+/// @example
+/// list-slice(a b c d e, -1, 6)
+/// // null
+///
+/// @return {List | Null}
+///
+
+@function list-slice($list, $start: 1, $end: length($list)) {
+    @if type-of($start) !='number'or type-of($end) !='number' {
+        @error 'List indexes #{$start} and #{$end} must be numbers for `list-slice`.';
+    }
+
+    @if $start>$end {
+        @error 'Start index is #{$start} but has to be lesser than or equals to the end index (#{$end}) for `list-slice`.';
+    }
+
+    @if $start < 1 or $end < 1 {
+        @error 'List indexes must be non-zero integers for `list-slice`.';
+    }
+
+    @if $start>length($list) {
+        @error 'Start index is #{$start} but list is only #{length($list)} items long for `list-slice`.';
+    }
+
+    @if $end>length($list) {
+        @error 'End index is #{$end} but list is only #{length($list)} items long for `list-slice`.';
+    }
+
+    $result: ();
+
+    @for $i from $start through $end {
+        $result: append($result, nth($list, $i), list-separator($list));
+    }
+
+    @return $result;
+}

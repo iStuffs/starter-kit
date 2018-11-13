@@ -1,0 +1,28 @@
+@charset 'UTF-8';
+
+///
+/// Removes value from `$list` at index `$index`.
+///
+/// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-remove-nth
+///
+/// @requires list-replace-nth
+///
+/// @param {List}   $list  - list to remove value from
+/// @param {Number} $index - index to remove
+///
+/// @example
+/// list-remove-nth(a b c, 2)
+/// // a c
+///
+/// @example
+/// list-remove-nth(a b c, 42)
+/// // null
+///
+/// @return {List | Null}
+///
+
+@function list-remove-nth($list, $index) {
+    $_: missing-dependencies('list-replace-nth');
+
+    @return list-replace-nth($list, $index, '');
+}

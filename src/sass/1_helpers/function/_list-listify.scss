@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-to-list
+/// @alias list-to-list
+///
+
+@function list-listify($value) {
+    @return list-to-list($value);
+}

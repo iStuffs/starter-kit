@@ -1,5 +1,52 @@
 @charset 'UTF-8';
 
+@import 'function/is-true';
+@import 'function/is-number';
+@import 'function/str-compare';
+@import 'function/missing-dependencies';
+
+@import 'functions/list-chunk';
+@import 'functions/list-comma-list';
+@import 'functions/list-contain';
+@import 'functions/list-count-values';
+@import 'functions/list-debug';
+@import 'functions/list-every';
+@import 'functions/list-explode';
+@import 'functions/list-first';
+@import 'functions/list-flatten';
+@import 'functions/list-has-values';
+@import 'functions/list-has-multiple-values';
+@import 'functions/list-insert-nth';
+@import 'functions/list-intersection';
+@import 'functions/list-is-empty';
+@import 'functions/list-is-single';
+@import 'functions/list-is-symmetrical';
+@import 'functions/list-last';
+@import 'functions/list-last-index';
+@import 'functions/list-loop';
+@import 'functions/list-prepend';
+@import 'functions/list-purge';
+@import 'functions/list-random-value';
+@import 'functions/list-range';
+@import 'functions/list-remove';
+@import 'functions/list-remove-duplicates';
+@import 'functions/list-remove-nth';
+@import 'functions/list-replace';
+@import 'functions/list-replace-nth';
+@import 'functions/list-reverse';
+@import 'functions/list-shuffle';
+@import 'functions/list-slice';
+@import 'functions/list-sort';
+@import 'functions/list-some';
+@import 'functions/list-sum';
+@import 'functions/list-tail';
+@import 'functions/list-to-list';
+@import 'functions/list-to-map';
+@import 'functions/list-to-string';
+@import 'functions/list-union';
+@import 'functions/list-walk';
+
+
 @import 'function/map-deep-get';
 @import 'function/map-deep-set';
 @import 'function/map-depth';

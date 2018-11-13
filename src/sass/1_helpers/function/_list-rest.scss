@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+///
+/// @requires list-tail
+/// @alias list-tail
+///
+
+@function list-rest($list) {
+    @return list-tail($list);
+}
