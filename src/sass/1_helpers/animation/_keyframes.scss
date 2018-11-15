@@ -1,0 +1,110 @@
+////
+/// animate.css -http://daneden.me/animate
+/// version - 3.7.0
+////
+
+/// @group keyframes / attention seekers
+    @import 'keyframes/attention_seekers/bounce';
+    @import 'keyframes/attention_seekers/flash';
+    @import 'keyframes/attention_seekers/pulse';
+    @import 'keyframes/attention_seekers/rubber-band';
+    @import 'keyframes/attention_seekers/shake';
+    @import 'keyframes/attention_seekers/head-shake';
+    @import 'keyframes/attention_seekers/swing';
+    @import 'keyframes/attention_seekers/tada';
+    @import 'keyframes/attention_seekers/wobble';
+    @import 'keyframes/attention_seekers/jello';
+    @import 'keyframes/attention_seekers/heart-beat';
+
+/// @group keyframes / bouncing entrances
+    @import 'keyframes/bouncing_entrances/bounce-in';
+    @import 'keyframes/bouncing_entrances/bounce-in-down';
+    @import 'keyframes/bouncing_entrances/bounce-in-left';
+    @import 'keyframes/bouncing_entrances/bounce-in-right';
+    @import 'keyframes/bouncing_entrances/bounce-in-up';
+
+/// @group keyframes / bouncing exits
+    @import 'keyframes/bouncing_exits/bounce-out';
+    @import 'keyframes/bouncing_exits/bounce-out-down';
+    @import 'keyframes/bouncing_exits/bounce-out-left';
+    @import 'keyframes/bouncing_exits/bounce-out-right';
+    @import 'keyframes/bouncing_exits/bounce-out-up';
+
+/// @group keyframes / fading entrances
+    @import 'keyframes/fading_entrances/fade-in';
+    @import 'keyframes/fading_entrances/fade-in-down';
+    @import 'keyframes/fading_entrances/fade-in-down-big';
+    @import 'keyframes/fading_entrances/fade-in-left';
+    @import 'keyframes/fading_entrances/fade-in-left-big';
+    @import 'keyframes/fading_entrances/fade-in-right';
+    @import 'keyframes/fading_entrances/fade-in-right-big';
+    @import 'keyframes/fading_entrances/fade-in-up';
+    @import 'keyframes/fading_entrances/fade-in-up-big';
+
+/// @group keyframes / fading exits
+    @import 'keyframes/fading_exits/fade-out';
+    @import 'keyframes/fading_exits/fade-out-down';
+    @import 'keyframes/fading_exits/fade-out-down-big';
+    @import 'keyframes/fading_exits/fade-out-left';
+    @import 'keyframes/fading_exits/fade-out-left-big';
+    @import 'keyframes/fading_exits/fade-out-right';
+    @import 'keyframes/fading_exits/fade-out-right-big';
+    @import 'keyframes/fading_exits/fade-out-up';
+    @import 'keyframes/fading_exits/fade-out-up-big';
+
+/// @group keyframes / flippers
+    @import 'keyframes/flippers/flip';
+    @import 'keyframes/flippers/flip-in-x';
+    @import 'keyframes/flippers/flip-in-y';
+    @import 'keyframes/flippers/flip-out-x';
+    @import 'keyframes/flippers/flip-out-y';
+
+/// @group keyframes / lightspeed
+    @import 'keyframes/lightspeed/light-speed-in';
+    @import 'keyframes/lightspeed/light-speed-out';
+
+/// @group keyframes / rotating entrances
+    @import 'keyframes/rotating_entrances/rotate-in';
+    @import 'keyframes/rotating_entrances/rotate-in-down-left';
+    @import 'keyframes/rotating_entrances/rotate-in-down-right';
+    @import 'keyframes/rotating_entrances/rotate-in-up-left';
+    @import 'keyframes/rotating_entrances/rotate-in-up-right';
+
+/// @group keyframes / rotating exits
+    @import 'keyframes/rotating_exits/rotate-out';
+    @import 'keyframes/rotating_exits/rotate-out-down-left';
+    @import 'keyframes/rotating_exits/rotate-out-down-right';
+    @import 'keyframes/rotating_exits/rotate-out-up-left';
+    @import 'keyframes/rotating_exits/rotate-out-up-right';
+
+/// @group keyframes / specials
+    @import 'keyframes/specials/hinge';
+    @import 'keyframes/specials/jack-in-the-box';
+    @import 'keyframes/specials/roll-in';
+    @import 'keyframes/specials/roll-out';
+
+/// @group keyframes / zooming entrances
+    @import 'keyframes/zooming_entrances/zoom-in';
+    @import 'keyframes/zooming_entrances/zoom-in-down';
+    @import 'keyframes/zooming_entrances/zoom-in-left';
+    @import 'keyframes/zooming_entrances/zoom-in-right';
+    @import 'keyframes/zooming_entrances/zoom-in-up';
+
+/// @group keyframes / zooming entrances
+    @import 'keyframes/zooming_exits/zoom-out';
+    @import 'keyframes/zooming_exits/zoom-out-down';
+    @import 'keyframes/zooming_exits/zoom-out-left';
+    @import 'keyframes/zooming_exits/zoom-out-right';
+    @import 'keyframes/zooming_exits/zoom-out-up';
+
+/// @group keyframes / sliding entrances
+    @import 'keyframes/sliding_entrances/slide-in-down';
+    @import 'keyframes/sliding_entrances/slide-in-left';
+    @import 'keyframes/sliding_entrances/slide-in-right';
+    @import 'keyframes/sliding_entrances/slide-in-up';
+
+/// @group keyframes / sliding exits
+    @import 'keyframes/sliding_exits/slide-out-down';
+    @import 'keyframes/sliding_exits/slide-out-left';
+    @import 'keyframes/sliding_exits/slide-out-right';
+    @import 'keyframes/sliding_exits/slide-out-up';
