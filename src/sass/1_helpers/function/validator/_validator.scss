@@ -1,0 +1,57 @@
+@charset 'UTF-8';
+
+///
+/// Check if $value pass the given $validations
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @param {String} $validations - tests to pass
+/// @return {Bool}
+///
+
+
+$VALIDATOR-TYPES: (
+    'number',
+    'absolute-length',
+    'relative-length',
+    'length',
+    'angle',
+    'bool',
+    'color',
+    'duration',
+    'frequency',
+    'integer',
+    'list',
+    'map',
+    'null',
+    'percentage',
+    'position',
+    'resolution',
+    'string',
+    'time'
+);
+
+@function validator($value, $validations) {
+
+    @if $validations=='any' {
+        @return true;
+    }
+
+    //collect validation errors
+    $errors: 0;
+
+    //check each validation and set 1 for each failure
+    @each $validation in $validations {
+        @if not index($VALIDATOR-TYPES, $validation) {
+            @error '#{$validation} is not a known validation type.';
+        }
+
+        @if not call('is-#{$validation}', $var) {
+            $errors: $errors + 1;
+        }
+    }
+
+    //throw an error if there are as many validation errors as validation tests because all checked types failed
+    @return $errors < length($validations);
+}
