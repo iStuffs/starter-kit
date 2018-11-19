@@ -1,0 +1,19 @@
+@charset 'UTF-8';
+
+///
+/// Check if $value is a duration
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @return {Bool}
+///
+/// @require $UNITS
+/// @require is-time
+/// @require is-number
+///
+/// @alias is-time
+
+@function is-duration($value) {
+    @return is-time($value);
+}

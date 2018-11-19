@@ -1,0 +1,16 @@
+@charset 'UTF-8';
+
+///
+/// Check if $value is a length
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @return {Bool}
+///
+/// @require is-relative-length
+/// @require is-absolute-length
+
+@function is-length($value) {
+    @return is-relative-length($value) or is-absolute-length($value);
+}

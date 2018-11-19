@@ -1,0 +1,16 @@
+@charset 'UTF-8';
+
+///
+/// Check if value is a frequency
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @return {Bool}
+///
+/// @require $UNITS
+/// @require is-number
+
+@function is-frequency($value) {
+    @return is-number($value) and index(map-get($UNITS, 'frequency'), unit($value)) !=null;
+}

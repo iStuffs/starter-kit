@@ -1,9 +1,13 @@
 @charset 'UTF-8';
 
 @import 'function/is-true';
-@import 'function/is-number';
+
 @import 'function/str-compare';
 @import 'function/missing-dependencies';
+
+@import 'function/validator';
+
+@import 'function/numbers';
 
 @import 'function/list';
 

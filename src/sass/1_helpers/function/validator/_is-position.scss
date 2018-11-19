@@ -1,0 +1,17 @@
+@charset 'UTF-8';
+
+///
+/// Check if $value is a resolution
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @return {Bool}
+///
+/// @require is-length
+/// @require is-percentage
+/// @require $UNITS
+
+@function is-position($value) {
+    @return is-length($value) or is-percentage($value) or index(map-get($UNITS, 'relative-position'), $value) !=null;
+}

@@ -1,0 +1,16 @@
+@charset 'UTF-8';
+
+///
+/// Check if $value is a time
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @return {Bool}
+///
+/// @require is-number
+/// @require $UNITS
+
+@function is-time($value) {
+    @return is-number($value) and index(map-get($UNITS, 'time'), unit($value)) !=null;
+}

@@ -1,0 +1,15 @@
+@charset 'UTF-8';
+
+///
+/// Check if $value is an integer
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @return {Bool}
+///
+/// @require is-number
+
+@function is-integer($value) {
+    @return is-number($value) and round($value)==$value;
+}

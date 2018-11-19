@@ -1,15 +1,14 @@
 @charset 'UTF-8';
 
 ///
-/// Check whether value is a number
+/// Check if $value is a string
 ///
 /// @access private
 ///
 /// @param {*} $value - value to run test against
-///
 /// @return {Bool}
 ///
 
-@function is-number($value) {
-    @return type-of($value)=='number';
+@function is-string($value) {
+    @return type-of($value)=='string';
 }

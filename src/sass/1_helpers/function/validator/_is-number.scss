@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+///
+/// Check if $value is a number
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @return {Bool}
+///
+
+@function is-number($value) {
+    @return type-of($value)=='number';
+}

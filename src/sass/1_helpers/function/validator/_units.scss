@@ -1,0 +1,26 @@
+@charset 'UTF-8';
+
+$UNITS-TIME: ('ms', 's');
+$UNITS-ANGLE: ('deg', 'rad', 'grad', 'turn');
+$UNITS-FREQUENCY: ('Hz', 'kHz');
+
+$UNITS-RELATIVE-LENGTH: ('em','ex','ch','rem','vw','vh','vmin','vmax');
+$UNITS-ABSOLUTE-LENGTH: ('cm', 'mm', 'in', 'px', 'pt', 'pc');
+$UNITS-LENTH: join($UNITS-RELATIVE-LENGTH, $UNITS-ABSOLUTE-LENGTH);
+$UNITS-PERCENTAGE: ('%');
+$UNITS-RESOLUTION: ('dpi', 'dpcm', 'dppx');
+$UNITS-RELATIVE-POSITION: ('top', 'right', 'bottom', 'left', 'center');
+$UNITS-POSITION: join(join($UNITS-LENTH, $UNITS-PERCENTAGE), $UNITS-RELATIVE-POSITION);
+
+$UNITS: (
+    'time': $UNITS-TIME,
+    'angle': $UNITS-ANGLE,
+    'frequency': $UNITS-FREQUENCY,
+    'relative-length': $UNITS-RELATIVE-LENGTH,
+    'absolute-length': $UNITS-ABSOLUTE-LENGTH,
+    'lenth': $UNITS-LENTH,
+    'percentage': $UNITS-PERCENTAGE,
+    'resolution': $UNITS-RESOLUTION,
+    'relative-position': $UNITS-RELATIVE-POSITION,
+    'position': $UNITS-POSITION,
+);

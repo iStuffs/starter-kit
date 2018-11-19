@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+///
+/// Check if $value is a list
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @return {Bool}
+///
+
+@function is-list($value) {
+    @return type-of($value)=='list';
+}

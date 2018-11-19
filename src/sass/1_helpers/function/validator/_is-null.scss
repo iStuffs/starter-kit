@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+///
+/// Check if $value is null
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @return {Bool}
+///
+
+@function is-null($value) {
+    @return type-of($value)=='null';
+}
