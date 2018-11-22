@@ -1,0 +1,33 @@
+@charset 'UTF-8';
+
+$MEDIA-TYPES: (
+    'all',
+    'print',
+    'screen',
+    'speech'
+);
+$BREAKPOINTS: (
+    'mobile': 320px,
+    'tablet': 768px,
+    'desktop': 1024px,
+    'wide': 1600px) !default;
+
+/// Mixin to manage responsive breakpoints
+/// @author Hugo Giraudel
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $BREAKPOINTS
+
+@mixin media($breakpoint) {
+
+    // If the key exists in the map
+    @if map-has-key($BREAKPOINTS, $breakpoint) {
+
+        // Prints a media query based on the value
+        @media (min-width: map-get($BREAKPOINTS, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        +"Available breakpoints are: #{map-keys($BREAKPOINTS)}.";
+    }
+}
