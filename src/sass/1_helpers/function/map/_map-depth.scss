@@ -1,6 +1,8 @@
 @charset 'UTF-8';
 
-/// Compute the maximum depth of a map
+/// Map depth - Compute the maximum depth of a map
+///
+/// @group map
 ///
 /// @param {Map} $map
 /// @return {Number} max depth of `$map`

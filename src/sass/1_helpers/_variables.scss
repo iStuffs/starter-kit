@@ -19,6 +19,7 @@ $red: #dc3545;
 
 
 // semantic colors
+// -----
 $color-primary: $blue;
 $color-secondary: $gray;
 $color-success: $green;
@@ -30,6 +31,8 @@ $color-font: $dark;
 $color-background: $light;
 $color-foreground: $gray;
 
+// semantic colors map
+// -----
 $colors: (
     'primary': $color-primary,
     'secondary': $color-secondary,

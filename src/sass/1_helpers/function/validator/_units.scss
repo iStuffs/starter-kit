@@ -1,5 +1,9 @@
 @charset 'UTF-8';
 
+////
+/// @group validators
+////
+
 $UNITS-TIME: ('ms', 's');
 $UNITS-ANGLE: ('deg', 'rad', 'grad', 'turn');
 $UNITS-FREQUENCY: ('Hz', 'kHz');
@@ -12,6 +16,8 @@ $UNITS-RESOLUTION: ('dpi', 'dpcm', 'dppx');
 $UNITS-RELATIVE-POSITION: ('top', 'right', 'bottom', 'left', 'center');
 $UNITS-POSITION: join(join($UNITS-LENTH, $UNITS-PERCENTAGE), $UNITS-RELATIVE-POSITION);
 
+/// UNITS
+/// @type map
 $UNITS: (
     'time': $UNITS-TIME,
     'angle': $UNITS-ANGLE,

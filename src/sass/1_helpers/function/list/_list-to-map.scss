@@ -1,9 +1,10 @@
 @charset 'UTF-8';
 
-///
-/// Casts `$list` into a map, using indexes as keys (starting with `$start`).
+/// List to map - Casts `$list` into a map, using indexes as keys (starting with `$start`).
 /// Useful for iterating through a list with an index variable.
 /// e.g. `@each $index, $value in to-map($list)`
+///
+/// @group list
 ///
 /// @author Andrey “Lolmaus” Mikhaylov
 /// @author Chris Eppstein

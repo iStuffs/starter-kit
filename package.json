@@ -13,6 +13,7 @@
     "git-remote-add": "git remote add origin https://github.com/$npm_package_gitUser/$npm_package_name.git",
     "gh-pages": "git subtree push --prefix dist origin gh-pages",
     "build": "gulp --production",
+    "doc": "gulp doc",
     "deploy": "npm run build && npm run gh-pages"
   },
   "gitUser": "iStuffs",
@@ -44,6 +45,7 @@
     "gulp-uglify": "^3.0.1",
     "gulp-zip": "^4.2.0",
     "rimraf": "^2.6.2",
+    "sassdoc": "^2.5.1",
     "vinyl-named": "^1.1.0",
     "webpack": "^4.27.1",
     "webpack-stream": "^5.2.1",

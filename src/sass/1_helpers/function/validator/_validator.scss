@@ -1,16 +1,5 @@
 @charset 'UTF-8';
 
-///
-/// Check if $value pass the given $validations
-///
-/// @group validators
-///
-/// @param {*} $value - value to run test against
-/// @param {String} $validations - tests to pass
-/// @return {Bool}
-///
-
-
 $VALIDATOR-TYPES: (
     'number',
     'absolute-length',
@@ -31,6 +20,16 @@ $VALIDATOR-TYPES: (
     'string',
     'time'
 );
+
+///
+/// validator - Check if $value pass the given $validations
+///
+/// @group validators
+///
+/// @param {*} $value - value to run test against
+/// @param {String} $validations - tests to pass
+/// @return {Bool}
+///
 
 @function validator($value, $validations) {
 

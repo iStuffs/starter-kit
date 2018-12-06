@@ -22,6 +22,7 @@ const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const named = require('vinyl-named');
 const sassGlob = require('gulp-sass-glob');
+const sassdoc = require('sassdoc');
 
 /* tasks declaration */
 function cssTask() {
@@ -102,6 +103,14 @@ function refresh(done) {
     done();
 }
 
+function doc() {
+    const sassDocOptions = {
+        dest: 'docs',
+    };
+    return gulp.src('./src/sass/**/*.scss')
+        .pipe(sassdoc(sassDocOptions));
+}
+
 gulp.task('build', gulp.series(cssTask, jsTask, htmlTask, imgTask));
 
 /* default task and watch */
@@ -115,3 +124,5 @@ gulp.task('watch', gulp.series('build', refresh, () => {
 }));
 
 gulp.task('default', argv.production ? gulp.series('build') : gulp.series('watch'));
+
+gulp.task('doc', gulp.series(doc));

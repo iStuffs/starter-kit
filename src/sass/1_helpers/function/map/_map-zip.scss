@@ -1,11 +1,16 @@
 @charset 'UTF-8';
 
-/// An equivalent of `zip` function but for maps.
+/// Map zip - An equivalent of `zip` function but for maps.
 /// Takes two lists, the first for keys, second for values.
+///
+/// @group map
+///
 /// @param {List} $keys - Keys for map
 /// @param {List} $values - Values for map
-/// @return {Map} Freshly created map
-/// @see http://sass-lang.com/documentation/Sass/Script/Functions.html#zip-instance_method
+/// @return {Map} - Freshly created map
+///
+/// @link http://sass-lang.com/documentation/Sass/Script/Functions.html#zip-instance_method
+
 
 @function map-zip($keys, $values) {
     $l-keys: length($keys);

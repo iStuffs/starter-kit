@@ -1,7 +1,10 @@
 @charset 'UTF-8';
 
 /// jQuery-style extend function
-/// About `map-merge()`:
+///
+/// @group map
+///
+/// @ignore About `map-merge()`:
 /// * only takes 2 arguments
 /// * is not recursive
 /// @param {Map} $map - first map

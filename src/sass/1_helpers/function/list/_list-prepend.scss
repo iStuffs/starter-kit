@@ -1,11 +1,12 @@
 @charset 'UTF-8';
 
+/// List prepend - Adds `$value` as first index of `$list`.
 ///
-/// Adds `$value` as first index of `$list`.
+/// @group list
 ///
 /// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-prepend
 ///
-/// @requires list-is-true
+/// @requires is-true
 /// @requires list-to-list
 ///
 /// @param {List} $list  - list to preprend value to

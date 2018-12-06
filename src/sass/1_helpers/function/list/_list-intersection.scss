@@ -1,15 +1,16 @@
+@charset 'UTF-8';
+
+/// List intersection - Returns a list of shared value from `$list` and `$lists` minus duplicates.
 ///
-/// Returns a list of shared value from `$list` and `$lists` minus duplicates.
+/// @group list
 ///
 /// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-intersection
 ///
 /// @requires list-remove-duplicates
 /// @requires list-to-list
 ///
-/// @param {List}    $list  - first list
+/// @param {list}    $list  - first list
 /// @param {ArgList} $lists - other lists
-@charset 'UTF-8';
-
 ///
 /// @example
 /// list-intersection(a b c, b e d, a c b)

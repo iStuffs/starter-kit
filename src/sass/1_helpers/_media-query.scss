@@ -6,6 +6,8 @@ $MEDIA-TYPES: (
     'screen',
     'speech'
 );
+/// $BREAKPOINTS
+/// @type List
 $BREAKPOINTS: (
     'mobile': 320px,
     'tablet': 768px,

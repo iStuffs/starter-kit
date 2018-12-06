@@ -1,20 +1,22 @@
 @charset 'UTF-8';
 
-// _decimal.scss | MIT License | gist.github.com/terkel/4373420
+/// Decimal ceil - Ceil a number to specified digits.
+///
+/// @group numbers
+///
+/// @param {Number} $number - A number to round
+/// @param {Number} $digits [0] - Digits to output
+/// @return {Number} - A ceiled number
+/// @example
+///     decimal-ceil(0.333)    => 1
+///     decimal-ceil(0.333, 1) => 0.4
+///     decimal-ceil(0.333, 2) => 0.34
+///     decimal-ceil(0.666)    => 1
+///     decimal-ceil(0.666, 1) => 0.7
+///     decimal-ceil(0.666, 2) => 0.67
+///
+/// @link gist.github.com/terkel/4373420
 
-// Ceil a number to specified digits.
-//
-// @param  {Number} $number A number to round
-// @param  {Number} [$digits:0] Digits to output
-// @return {Number} A ceiled number
-// @example
-//     decimal-ceil(0.333)    => 1
-//     decimal-ceil(0.333, 1) => 0.4
-//     decimal-ceil(0.333, 2) => 0.34
-//     decimal-ceil(0.666)    => 1
-//     decimal-ceil(0.666, 1) => 0.7
-//     decimal-ceil(0.666, 2) => 0.67
-//
 @function decimal-ceil ($number, $digits: 0) {
     @return decimal-round($number, $digits, ceil);
 }

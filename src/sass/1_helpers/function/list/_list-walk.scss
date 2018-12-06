@@ -1,7 +1,8 @@
 @charset 'UTF-8';
 
+/// list walk - Apply `$function` to every item from `$list` passing $args as parameters.
 ///
-/// Apply `$function` to every item from `$list` passing $args as parameters.
+/// @group list
 ///
 /// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-walk
 ///

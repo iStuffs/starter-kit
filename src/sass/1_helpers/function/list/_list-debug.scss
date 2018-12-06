@@ -1,7 +1,8 @@
 @charset 'UTF-8';
 
+/// List debug - Returns `$list` as a string, prettified if `$pre` is set to true.
 ///
-/// Returns `$list` as a string, prettified if `$pre` is set to true.
+/// @group list
 ///
 /// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#mixin-list-debug
 ///

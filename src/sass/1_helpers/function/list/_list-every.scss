@@ -1,7 +1,8 @@
 @charset 'UTF-8';
 
+/// List every - Tests whether all items from `$list` pass the test implemented by `$function`.
 ///
-/// Tests whether all items from `$list` pass the test implemented by `$function`.
+/// @group list
 ///
 /// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-every
 ///

@@ -1,11 +1,12 @@
 @charset 'UTF-8';
 
+/// List sort - Sorts values of `$list` using quick-sort algorithm using `$order`.
 ///
-/// Sorts values of `$list` using quick-sort algorithm using `$order`.
+/// @group list
 ///
 /// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-sort
 ///
-/// @requires list-str-compare
+/// @requires str-compare
 /// @requires list-has-multiple-values
 /// @requires list-to-list
 ///

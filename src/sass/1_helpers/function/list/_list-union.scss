@@ -1,7 +1,8 @@
 @charset 'UTF-8';
 
+/// List union - Returns a list of values from `$lists` minus duplicates.
 ///
-/// Returns a list of values from `$lists` minus duplicates.
+/// @group list
 ///
 /// @ignore Documentation: http://at-import.github.io/SassyLists/documentation/#function-list-union
 ///

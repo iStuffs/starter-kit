@@ -1,11 +1,15 @@
 @charset 'UTF-8';
 
 /// Map deep set - Update a key deeply nested
-/// @author Hugo Giraudel
+///
+/// @group map
+///
 /// @param {Map} $map - Map to update
 /// @param {Arglist} $keys - Keys to access to value to update
 /// @param {*} $value - New value (last member of `$keys`)
 /// @return {Map} - Updated map
+///
+/// @author Hugo Giraudel
 
 @function map-deep-set($map, $keys...
 
