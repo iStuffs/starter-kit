@@ -1,53 +1,51 @@
 /* gulp plugins variables */
-
 const gulp = require('gulp');
-const sass = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
-const rename = require('gulp-rename');
-const cleanCss = require('gulp-clean-css');
-const htmlMin = require('gulp-htmlmin');
-const uglify = require('gulp-uglify');
+const plugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync');
-const sourcemaps = require('gulp-sourcemaps');
-const imagemin = require('gulp-imagemin');
-const babel  = require('gulp-babel');
-const plumber = require('gulp-plumber');
-const notify  = require('gulp-notify');
-const zip  = require('gulp-zip');
 const rm  = require('rimraf');
-const gulpif = require('gulp-if');
 const { argv } = require('yargs');
 const eyeglass = require('eyeglass');
 const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const named = require('vinyl-named');
-const sassGlob = require('gulp-sass-glob');
+const panini = require('panini');
 const sassdoc = require('sassdoc');
+
+/* Plugins */
+// { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
+const $ = plugins();
+const { PATHS, HTML, CSS, JS, IMAGES, COMPATIBILITY, SERVER } = require('./config.json');
 
 /* tasks declaration */
 function cssTask() {
-    return gulp.src('./src/sass/**/*.{sass,scss}')
-        .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
-        .pipe(gulpif(!argv.production, sourcemaps.init()))
-        .pipe(sassGlob())
-        .pipe(sass(eyeglass()).on('error', sass.logError))
-        .pipe(autoprefixer({
-            browsers: ['last 6 versions'],
+    return gulp.src(PATHS.assets + CSS.src)
+        .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
+        .pipe($.if(!argv.production, $.sourcemaps.init()))
+        .pipe($.sassGlob())
+        .pipe($.sass(eyeglass()).on('error', $.sass.logError))
+        .pipe($.autoprefixer({
+            browsers: COMPATIBILITY,
             cascade: false,
         }))
-        .pipe(cleanCss({
-            compatibility: 'ie8',
+        .pipe($.cleanCss({
+            compatibility: 'ie11',
         }))
-        .pipe(rename((path) => { path.basename += '.min'; }))
-        .pipe(gulpif(!argv.production, sourcemaps.write('.')))
-        .pipe(gulp.dest('./dist/css'));
+        .pipe($.if(!argv.production, $.sourcemaps.write('.')))
+        .pipe(gulp.dest(CSS.dest));
 }
 
 function htmlTask() {
-    return gulp.src('src/*.html')
-        .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
-        .pipe(gulpif(argv.production, htmlMin({ collapseWhitespace: true })))
-        .pipe(gulp.dest('dist'));
+    return gulp.src(PATHS.src + HTML.src)
+        .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
+        .pipe(panini({
+            root: HTML.root,
+            layouts: HTML.layouts,
+            partials: HTML.partials,
+            helpers: HTML.helpers,
+            data: HTML.data,
+        }))
+        .pipe($.if(argv.production, $.htmlmin({ collapseWhitespace: true })))
+        .pipe(gulp.dest(PATHS.dest));
 }
 
 const webpackConfig = {
@@ -67,25 +65,25 @@ const webpackConfig = {
     devtool: !argv.production && 'source-map',
 };
 function jsTask() {
-    return gulp.src('./src/js/**/*.js')
+    return gulp.src(PATHS.assets + JS.src)
         .pipe(named())
-        .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
-        .pipe(gulpif(!argv.production, sourcemaps.init()))
+        .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
+        .pipe($.if(!argv.production, $.sourcemaps.init()))
         .pipe(webpackStream(webpackConfig, webpack))
-        .pipe(gulpif(argv.production, uglify()))
-        .pipe(gulpif(!argv.production, sourcemaps.write('.')))
-        .pipe(gulp.dest('./dist/js'));
+        .pipe($.if(argv.production, $.uglify()))
+        .pipe($.if(!argv.production, $.sourcemaps.write('.')))
+        .pipe(gulp.dest(JS.dest));
 }
 
 function imgTask() {
-    return gulp.src('src/img/*.{gif,jpg,png,svg,jpeg}')
-        .pipe(imagemin())
+    return gulp.src(PATHS.assets + IMAGES.src)
+        .pipe($.imagemin())
         .pipe(gulp.dest('dist/img'));
 }
 
 function compress() {
     return gulp.src('dist/**/*')
-        .pipe(zip(`${process.env.npm_package_name}.zip`))
+        .pipe($.zip(`${process.env.npm_package_name}.zip`))
         .pipe(gulp.dest('./'));
 }
 
@@ -96,9 +94,9 @@ function cleanDist(done) {
 function refresh(done) {
     browserSync.init({
         server: {
-            baseDir: './dist/',
+            baseDir: PATHS.dest,
         },
-        port: '8080',
+        port: SERVER.port,
     });
     done();
 }
@@ -115,12 +113,13 @@ gulp.task('build', gulp.series(cssTask, jsTask, htmlTask, imgTask));
 
 /* default task and watch */
 gulp.task('watch', gulp.series('build', refresh, () => {
-    gulp.watch('./src/sass/**/*.{sass,scss}', gulp.series(cssTask));
-    gulp.watch('./src/js/*.js', gulp.series(jsTask));
-    gulp.watch('./src/*.html', gulp.series(htmlTask));
+    gulp.watch(PATHS.assets + CSS.src, gulp.series(cssTask));
+    gulp.watch(PATHS.src + HTML.src, gulp.series(htmlTask));
+    gulp.watch(PATHS.assets + JS.src, gulp.series(jsTask));
+    gulp.watch(PATHS.src + HTML.src, gulp.series(panini.refresh));
     gulp.watch('./dist/*.html').on('change', browserSync.reload);
-    gulp.watch('./dist/css/*.css').on('change', browserSync.reload);
-    gulp.watch('./dist/js/*.js').on('change', browserSync.reload);
+    gulp.watch('./dist/assets/css/*.css').on('change', browserSync.reload);
+    gulp.watch('./dist/assets/scripts/*.js').on('change', browserSync.reload);
 }));
 
 gulp.task('default', argv.production ? gulp.series('build') : gulp.series('watch'));
