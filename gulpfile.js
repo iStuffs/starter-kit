@@ -13,37 +13,38 @@ const panini = require('panini');
 /* Plugins */
 // { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
 const $ = plugins();
+const { PATHS, HTML, CSS, JS, IMAGES, COMPATIBILITY, SERVER } = require('./config.json');
 
 /* tasks declaration */
 function cssTask() {
-    return gulp.src('./src/assets/sass/**/*.{sass,scss}')
+    return gulp.src(PATHS.assets + CSS.src)
         .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
         .pipe($.if(!argv.production, $.sourcemaps.init()))
         .pipe($.sassGlob())
         .pipe($.sass(eyeglass()).on('error', $.sass.logError))
         .pipe($.autoprefixer({
-            browsers: ['last 6 versions'],
+            browsers: COMPATIBILITY,
             cascade: false,
         }))
         .pipe($.cleanCss({
-            compatibility: 'ie8',
+            compatibility: 'ie11',
         }))
         .pipe($.if(!argv.production, $.sourcemaps.write('.')))
-        .pipe(gulp.dest('./dist/assets/css'));
+        .pipe(gulp.dest(CSS.dest));
 }
 
 function htmlTask() {
-    return gulp.src('src/pages/**/*.{html,hbs,handlebars}')
+    return gulp.src(PATHS.src + HTML.src)
         .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
         .pipe(panini({
-            root: 'src/pages/',
-            layouts: 'src/layouts/',
-            partials: 'src/partials/',
-            helpers: 'src/helpers/',
-            data: 'src/data/',
+            root: HTML.root,
+            layouts: HTML.layouts,
+            partials: HTML.partials,
+            helpers: HTML.helpers,
+            data: HTML.data,
         }))
         .pipe($.if(argv.production, $.htmlmin({ collapseWhitespace: true })))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest(PATHS.dest));
 }
 
 const webpackConfig = {
@@ -63,18 +64,18 @@ const webpackConfig = {
     devtool: !argv.production && 'source-map',
 };
 function jsTask() {
-    return gulp.src('./src/assets/scripts/**/*.js')
+    return gulp.src(PATHS.assets + JS.src)
         .pipe(named())
         .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
         .pipe($.if(!argv.production, $.sourcemaps.init()))
         .pipe(webpackStream(webpackConfig, webpack))
         .pipe($.if(argv.production, $.uglify()))
         .pipe($.if(!argv.production, $.sourcemaps.write('.')))
-        .pipe(gulp.dest('./dist/assets/scripts'));
+        .pipe(gulp.dest(JS.dest));
 }
 
 function imgTask() {
-    return gulp.src('src/assets/imgages/*.{gif,jpg,png,svg,jpeg}')
+    return gulp.src(PATHS.assets + IMAGES.src)
         .pipe($.imagemin())
         .pipe(gulp.dest('dist/img'));
 }
@@ -92,9 +93,9 @@ function cleanDist(done) {
 function refresh(done) {
     browserSync.init({
         server: {
-            baseDir: './dist/',
+            baseDir: PATHS.dest,
         },
-        port: '8080',
+        port: SERVER.port,
     });
     done();
 }
@@ -103,10 +104,10 @@ gulp.task('build', gulp.series(cssTask, jsTask, htmlTask, imgTask));
 
 /* default task and watch */
 gulp.task('watch', gulp.series('build', refresh, () => {
-    gulp.watch('./src/assets/sass/**/*.{sass,scss}', gulp.series(cssTask));
-    gulp.watch('./src/assets/scripts/*.js', gulp.series(jsTask));
-    gulp.watch('./src/*.html', gulp.series(htmlTask));
-    gulp.watch('./src/{layouts,partials,helpers,data}/**/*', gulp.series(panini.refresh));
+    gulp.watch(PATHS.assets + CSS.src, gulp.series(cssTask));
+    gulp.watch(PATHS.src + HTML.src, gulp.series(htmlTask));
+    gulp.watch(PATHS.assets + JS.src, gulp.series(jsTask));
+    gulp.watch(PATHS.src + HTML.src, gulp.series(panini.refresh));
     gulp.watch('./dist/*.html').on('change', browserSync.reload);
     gulp.watch('./dist/assets/css/*.css').on('change', browserSync.reload);
     gulp.watch('./dist/assets/scripts/*.js').on('change', browserSync.reload);

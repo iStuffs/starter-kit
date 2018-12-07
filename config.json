@@ -1,0 +1,36 @@
+{
+    "PATHS": {
+        "dest": "./dist",
+        "src": "./src",
+        "assets": "./src/assets"
+    },
+    "SERVER": {
+        "port": 8000
+    },
+    "HTML": {
+        "src": "/pages/**/*.{html,hbs,handlebars}",
+        "root": "./src/pages/",
+        "layouts": "./src/layouts/",
+        "partials": "./src/partials/",
+        "helpers": "./src/helpers/",
+        "data": "./src/data/"
+    },
+    "CSS": {
+        "src": "/sass/**/*.{sass,scss}",
+        "dest": "./dist/assets/css"
+    },
+    "JS": {
+        "src": "/scripts/**/*.js",
+        "dest": "./dist/assets/scripts"
+
+    },
+    "IMAGES": {
+        "src": "/imgages/**/*.{gif,jpg,png,svg,jpeg}",
+        "dest": "./dist/images"
+    },
+    "COMPATIBILITY": [
+        "last 3 versions",
+        "ie >= 11",
+        "ios >= 10"
+    ]
+}
