@@ -55,6 +55,7 @@
   "dependencies": {
     "bootstrap-reboot-importer": "^1.0.1",
     "bourbon": "^5.1.0",
+    "panini": "^1.6.3",
     "sassy-normalize": "^8.0.3"
   },
   "repository": {
