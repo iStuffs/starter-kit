@@ -1,48 +1,40 @@
 /* gulp plugins variables */
-
 const gulp = require('gulp');
-const sass = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
-const cleanCss = require('gulp-clean-css');
-const htmlMin = require('gulp-htmlmin');
-const uglify = require('gulp-uglify');
+const plugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync');
-const sourcemaps = require('gulp-sourcemaps');
-const imagemin = require('gulp-imagemin');
-const plumber = require('gulp-plumber');
-const notify  = require('gulp-notify');
-const zip  = require('gulp-zip');
 const rm  = require('rimraf');
-const gulpif = require('gulp-if');
 const { argv } = require('yargs');
 const eyeglass = require('eyeglass');
 const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const named = require('vinyl-named');
-const sassGlob = require('gulp-sass-glob');
 const panini = require('panini');
+
+/* Plugins */
+// { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
+const $ = plugins();
 
 /* tasks declaration */
 function cssTask() {
     return gulp.src('./src/assets/sass/**/*.{sass,scss}')
-        .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
-        .pipe(gulpif(!argv.production, sourcemaps.init()))
-        .pipe(sassGlob())
-        .pipe(sass(eyeglass()).on('error', sass.logError))
-        .pipe(autoprefixer({
+        .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
+        .pipe($.if(!argv.production, $.sourcemaps.init()))
+        .pipe($.sassGlob())
+        .pipe($.sass(eyeglass()).on('error', $.sass.logError))
+        .pipe($.autoprefixer({
             browsers: ['last 6 versions'],
             cascade: false,
         }))
-        .pipe(cleanCss({
+        .pipe($.cleanCss({
             compatibility: 'ie8',
         }))
-        .pipe(gulpif(!argv.production, sourcemaps.write('.')))
+        .pipe($.if(!argv.production, $.sourcemaps.write('.')))
         .pipe(gulp.dest('./dist/assets/css'));
 }
 
 function htmlTask() {
     return gulp.src('src/pages/**/*.{html,hbs,handlebars}')
-        .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
+        .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
         .pipe(panini({
             root: 'src/pages/',
             layouts: 'src/layouts/',
@@ -50,7 +42,7 @@ function htmlTask() {
             helpers: 'src/helpers/',
             data: 'src/data/',
         }))
-        .pipe(gulpif(argv.production, htmlMin({ collapseWhitespace: true })))
+        .pipe($.if(argv.production, $.htmlmin({ collapseWhitespace: true })))
         .pipe(gulp.dest('dist'));
 }
 
@@ -73,23 +65,23 @@ const webpackConfig = {
 function jsTask() {
     return gulp.src('./src/assets/scripts/**/*.js')
         .pipe(named())
-        .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
-        .pipe(gulpif(!argv.production, sourcemaps.init()))
+        .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
+        .pipe($.if(!argv.production, $.sourcemaps.init()))
         .pipe(webpackStream(webpackConfig, webpack))
-        .pipe(gulpif(argv.production, uglify()))
-        .pipe(gulpif(!argv.production, sourcemaps.write('.')))
+        .pipe($.if(argv.production, $.uglify()))
+        .pipe($.if(!argv.production, $.sourcemaps.write('.')))
         .pipe(gulp.dest('./dist/assets/scripts'));
 }
 
 function imgTask() {
     return gulp.src('src/assets/imgages/*.{gif,jpg,png,svg,jpeg}')
-        .pipe(imagemin())
+        .pipe($.imagemin())
         .pipe(gulp.dest('dist/img'));
 }
 
 function compress() {
     return gulp.src('dist/**/*')
-        .pipe(zip(`${process.env.npm_package_name}.zip`))
+        .pipe($.zip(`${process.env.npm_package_name}.zip`))
         .pipe(gulp.dest('./'));
 }
 
