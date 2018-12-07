@@ -35,6 +35,8 @@ sass/
 └── style.sass
 ```
 
+Sass Documentation : https://istuffs.github.io/starter-kit/
+
 ## What you need ?
 
 You first need to have [node.js](https://nodejs.org/en/) installed.
