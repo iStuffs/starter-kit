@@ -1,0 +1,61 @@
+////
+/// Minimalist grid system with flexbox
+///
+/// @group grid
+/// @author Samuel DIDIER-LAURENT
+/// assumption box-sizing is border-box
+////
+
+/// variables
+$grid-num-columns: 12;
+$grid-gutter: 2rem;
+
+$grid: (
+    'num-columns': 12,
+    'gutter': 2rem
+);
+
+/// getter function
+@function grid($value) {
+    @return map-get($grid, $value);
+}
+
+/// mixins
+@mixin grid-container(){
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    & > * {
+        flex: 0 1 auto;
+    }
+}
+@mixin grid-colunms($num-columns-width: 1, $max-columns: grid('num-columns'), $gutter: grid('gutter')) {
+    @if comparable($num-columns-width, $max-columns) {
+        width: calc(($num-columns-width / $max-columns * 100%) - $grid-gutter);
+    } @else {
+        @warn "can't divide `$num-columns-width` by `$max-columns`";
+    }
+    margin-bottom: $grid-gutter;
+}
+
+/// utilities
+.grid {
+    @include grid-container;
+}
+.column {
+    flex: 0 1 auto;
+}
+
+@for $i from 0 through grid('num-columns') {
+    .column-#{$i} {
+        @include grid-colunms($i);
+    }
+}
+
+.grid-first{
+    order: -1;
+}
+
+.grid-last {
+    order: 1;
+}
