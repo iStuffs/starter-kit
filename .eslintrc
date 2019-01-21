@@ -7,7 +7,7 @@
         "fetch": true,
         "CustomEvent": true,
         "Headers": true,
-        "FormData": true,
+        "FormData": true
     },
     "rules": {
         "key-spacing": 0,
@@ -32,6 +32,6 @@
         "class-methods-use-this": 0,
         "import/extensions": 0,
         "import/no-extraneous-dependencies": 0,
-        "import/no-unresolved": 0,
+        "import/no-unresolved": 0
     }
 }
