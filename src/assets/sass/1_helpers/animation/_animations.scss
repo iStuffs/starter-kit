@@ -1,0 +1,25 @@
+@charset 'UTF-8';
+
+////
+/// General animation properties for site consistencie
+///
+/// @group animation
+///
+/// @author Samuel DIDIER-LAURENT
+////
+
+
+$animation-duration: 0.5s;
+$animation-easing: ease-in-out;
+
+$animations: (
+    duration: $animation-duration,
+    easing: $animation-easing
+);
+
+/// return value of the asked index for the `$animations` map
+/// @param { String } $index
+
+@function animations($index){
+  @return map-get($animations, $index);
+}
