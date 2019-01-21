@@ -14,7 +14,7 @@ const sassdoc = require('sassdoc');
 /* Plugins */
 // { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
 const $ = plugins();
-const { PATHS, HTML, CSS, JS, IMAGES, COMPATIBILITY, SERVER } = require('./config.json');
+const { PATHS, HTML, CSS, JS, IMAGES, JSON, FONTS, COMPATIBILITY, SERVER } = require('./config.json');
 
 /* tasks declaration */
 function cssTask() {
@@ -78,7 +78,17 @@ function jsTask() {
 function imgTask() {
     return gulp.src(PATHS.assets + IMAGES.src)
         .pipe($.imagemin())
-        .pipe(gulp.dest('dist/img'));
+        .pipe(gulp.dest(IMAGES.dest));
+}
+
+function jsonTask() {
+    return gulp.src(PATHS.assets + JSON.src)
+        .pipe(gulp.dest(JSON.dest));
+}
+
+function fontsTask() {
+    return gulp.src(PATHS.assets + FONTS.src)
+        .pipe(gulp.dest(FONTS.dest));
 }
 
 function compress() {
@@ -109,17 +119,21 @@ function doc() {
         .pipe(sassdoc(sassDocOptions));
 }
 
-gulp.task('build', gulp.series(cssTask, jsTask, htmlTask, imgTask));
+gulp.task('build', gulp.series(cssTask, jsTask, htmlTask, imgTask, jsonTask, fontsTask));
 
 /* default task and watch */
 gulp.task('watch', gulp.series('build', refresh, () => {
-    gulp.watch(PATHS.assets + CSS.src, gulp.series(cssTask));
     gulp.watch(PATHS.src + HTML.src, gulp.series(htmlTask));
+    gulp.watch(PATHS.assets + CSS.src, gulp.series(cssTask));
     gulp.watch(PATHS.assets + JS.src, gulp.series(jsTask));
+    gulp.watch(PATHS.assets + JSON.src, gulp.series(jsonTask));
+    gulp.watch(PATHS.assets + FONTS.src, gulp.series(fontsTask));
     gulp.watch(PATHS.src + HTML.src, gulp.series(panini.refresh));
     gulp.watch('./dist/*.html').on('change', browserSync.reload);
     gulp.watch('./dist/assets/css/*.css').on('change', browserSync.reload);
     gulp.watch('./dist/assets/scripts/*.js').on('change', browserSync.reload);
+    gulp.watch('./dist/assets/fonts/*.*').on('change', browserSync.reload);
+    gulp.watch('./dist/assets/json/*.json').on('change', browserSync.reload);
 }));
 
 gulp.task('default', argv.production ? gulp.series('build') : gulp.series('watch'));

@@ -22,11 +22,18 @@
     "JS": {
         "src": "/scripts/**/*.js",
         "dest": "./dist/assets/scripts"
-
     },
     "IMAGES": {
-        "src": "/imgages/**/*.{gif,jpg,png,svg,jpeg}",
-        "dest": "./dist/images"
+        "src": "/images/**/*.{gif,jpg,jpeg,png,svg}",
+        "dest": "./dist/assets/images"
+    },
+    "JSON": {
+        "src": "/json/**/*.json",
+        "dest": "./dist/assets/json"
+    },
+    "FONTS": {
+        "src": "/fonts/**/*.{eot,otf,svg,ttf,woff,woff2}",
+        "dest": "./dist/assets/fonts"
     },
     "COMPATIBILITY": [
         "last 3 versions",
