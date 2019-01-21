@@ -1,0 +1,30 @@
+@charset 'UTF-8';
+
+////
+/// General borders properties for site consistencie
+///
+/// @group borders
+///
+/// @author Samuel DIDIER-LAURENT
+////
+
+
+$border-width: 1px;
+$border-style: solid;
+$border-color: rgba(black, .6);
+$border-radius: 0.5rem;
+
+$borders: (
+    all: $border-width $border-style $border-color,
+    width: $border-width,
+    style: $border-style,
+    color: $border-color,
+    radius: $border-radius
+);
+
+/// return value of the asked index for the `$borders` map
+/// @param { String } $index
+
+@function borders($index){
+  @return map-get($borders, $index);
+}
