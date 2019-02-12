@@ -1,0 +1,13 @@
+////
+/// Ellipis too long text to keep it one line
+///
+/// @group mixin
+///
+/// @author Samuel DIDIER-LAURENT
+////
+
+@mixin text-ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

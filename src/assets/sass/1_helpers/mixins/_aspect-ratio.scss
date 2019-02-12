@@ -1,0 +1,29 @@
+////
+/// Work around to preserve aspect ratio
+///
+/// @group mixin
+///
+/// @author Samuel DIDIER-LAURENT
+///
+/// @link https://ratiobuddy.com/
+/// @link https://css-tricks.com/snippets/sass/maintain-aspect-ratio-mixin/
+////
+
+@mixin aspect-ratio ($width, $height) {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

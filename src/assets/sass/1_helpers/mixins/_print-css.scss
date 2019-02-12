@@ -1,0 +1,17 @@
+////
+/// Print css based on a map with css-property: value content
+///
+/// @group mixin
+///
+/// @param {map} $map - map(css-property: value)
+///
+/// @author Samuel DIDIER-LAURENT
+////
+
+@mixin print-css ($map) {
+  @each $property, $value in $map {
+    @if type-of($value) != map {
+      #{$property}: #{$value};
+    }
+  }
+}
