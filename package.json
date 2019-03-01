@@ -28,7 +28,7 @@
     "eslint": "^5.14.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "eyeglass": "^2.1.0",
+    "eyeglass": "^2.2.1",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-clean-css": "^4.0.0",
@@ -46,7 +46,7 @@
     "rimraf": "^2.6.3",
     "sassdoc": "^2.5.1",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.29.5",
+    "webpack": "^4.29.6",
     "webpack-stream": "^5.2.1",
     "yargs": "^13.2.1"
   },
