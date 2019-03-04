@@ -1,7 +1,7 @@
 {
     "PATHS": {
-        "dest": "./dist",
         "src": "./src",
+        "dest": "./dist",
         "assets": "./src/assets"
     },
     "SERVER": {

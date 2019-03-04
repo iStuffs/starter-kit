@@ -14,13 +14,17 @@ const sassdoc = require('sassdoc');
 /* Plugins */
 // { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
 const $ = plugins();
-const { PATHS, HTML, CSS, JS, IMAGES, JSON, FONTS, COMPATIBILITY, SERVER } = require('./config.json');
+const {
+    PATHS, HTML, CSS, JS, IMAGES, JSON, FONTS, COMPATIBILITY, SERVER,
+} = require('./config.json');
+
+const production = !!argv.production;
 
 /* tasks declaration */
 function cssTask() {
     return gulp.src(PATHS.assets + CSS.src)
         .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
-        .pipe($.if(!argv.production, $.sourcemaps.init()))
+        .pipe($.if(!production, $.sourcemaps.init()))
         .pipe($.sassGlob())
         .pipe($.sass(eyeglass()).on('error', $.sass.logError))
         .pipe($.autoprefixer({
@@ -30,7 +34,7 @@ function cssTask() {
         .pipe($.cleanCss({
             compatibility: 'ie11',
         }))
-        .pipe($.if(!argv.production, $.sourcemaps.write('.')))
+        .pipe($.if(!production, $.sourcemaps.write('.')))
         .pipe(gulp.dest(CSS.dest));
 }
 
@@ -44,12 +48,12 @@ function htmlTask() {
             helpers: HTML.helpers,
             data: HTML.data,
         }))
-        .pipe($.if(argv.production, $.htmlmin({ collapseWhitespace: true })))
+        .pipe($.if(production, $.htmlmin({ collapseWhitespace: true })))
         .pipe(gulp.dest(PATHS.dest));
 }
 
 const webpackConfig = {
-    mode: (argv.production ? 'production' : 'development'),
+    mode: (production ? 'production' : 'development'),
     module: {
         rules: [{
             test: /.js$/,
@@ -62,16 +66,16 @@ const webpackConfig = {
             }],
         }],
     },
-    devtool: !argv.production && 'source-map',
+    devtool: !production && 'source-map',
 };
 function jsTask() {
     return gulp.src(PATHS.assets + JS.src)
         .pipe(named())
         .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
-        .pipe($.if(!argv.production, $.sourcemaps.init()))
+        .pipe($.if(!production, $.sourcemaps.init()))
         .pipe(webpackStream(webpackConfig, webpack))
-        .pipe($.if(argv.production, $.uglify()))
-        .pipe($.if(!argv.production, $.sourcemaps.write('.')))
+        .pipe($.if(production, $.uglify()))
+        .pipe($.if(!production, $.sourcemaps.write('.')))
         .pipe(gulp.dest(JS.dest));
 }
 
@@ -136,6 +140,6 @@ gulp.task('watch', gulp.series('build', refresh, () => {
     gulp.watch('./dist/assets/json/*.json').on('change', browserSync.reload);
 }));
 
-gulp.task('default', argv.production ? gulp.series('build') : gulp.series('watch'));
+gulp.task('default', production ? gulp.series('build') : gulp.series('watch'));
 
 gulp.task('doc', gulp.series(doc));
