@@ -26,3 +26,29 @@ $font-family-system: -apple-system, system, /* 1 */
     Roboto, /* 4 */
     sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default; /* 5 */
+
+
+/// default link styling
+a:not([class]){
+    color: colors('primary');
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    &::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 1px;
+        opacity: 0;
+        background-color: currentColor;
+        transition: animations('duration') animations('easing');
+        transition-property: opacity;
+    }
+    @include hover{
+        &::before{
+            opacity: 1;
+        }
+    }
+}

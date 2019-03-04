@@ -1,0 +1,6 @@
+/// return value of the asked index for the `$colors` map
+/// @param { String } $index
+
+@function colors($index){
+  @return map-get($colors, $index);
+}
