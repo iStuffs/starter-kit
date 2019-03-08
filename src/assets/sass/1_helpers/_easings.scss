@@ -69,5 +69,8 @@ $easings: (
 );
 
 @function easing($type: 'ease'){
+    @if not map-has-key($easings, $type) {
+        @warn "No easing type found for `#{$type}` in `$easings` map.";
+    }
     @return map-get($easings, $type );
 }

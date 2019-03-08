@@ -21,5 +21,8 @@ $animations: (
 /// @param { String } $index
 
 @function animations($index){
+    @if not map-has-key($animations, $index) {
+        @warn "No z-index found for `#{$index}` in `$animations` map.";
+    }
   @return map-get($animations, $index);
 }

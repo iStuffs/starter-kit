@@ -2,5 +2,8 @@
 /// @param { String } $index
 
 @function colors($index){
+    @if not map-has-key($colors, $index) {
+        @warn "No z-index found for `#{$index}` in `$colors` map.";
+    }
   @return map-get($colors, $index);
 }

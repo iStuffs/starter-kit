@@ -17,6 +17,9 @@ $grid: (
 
 /// getter function
 @function grid($value) {
+    @if not map-has-key($grid, $value) {
+        @warn "No easing type found for `#{$value}` in `$grid` map.";
+    }
     @return map-get($grid, $value);
 }
 

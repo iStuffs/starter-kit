@@ -26,5 +26,8 @@ $borders: (
 /// @param { String } $index
 
 @function borders($index){
+    @if not map-has-key($borders, $index) {
+        @warn "No border property found for `#{$index}` in `$borders` map.";
+    }
   @return map-get($borders, $index);
 }
