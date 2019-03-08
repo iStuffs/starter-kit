@@ -1,0 +1,23 @@
+////
+/// Global z-index manager
+///
+/// @group z-index
+///
+/// @author Samuel DIDIER-LAURENT
+////
+
+$z-index: (
+    'modal': 900,
+    'dropdown': 800,
+    'default': 1,
+    'below': -1,
+    'depth': -1000,
+);
+
+/// getter function
+@function z-index($value) {
+    @if not map-has-key($z-index, $value) {
+        @warn "No z-index found for `#{$value}` in `$z-index` map.";
+    }
+    @return map-get($z-index, $value);
+}
