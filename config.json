@@ -1,43 +1,49 @@
 {
-    "PATHS": {
-        "src": "./src",
-        "dest": "./dist",
-        "assets": "./src/assets"
-    },
-    "SERVER": {
-        "port": 8000
-    },
-    "HTML": {
-        "src": "/pages/**/*.{html,hbs,handlebars}",
-        "root": "./src/pages/",
-        "layouts": "./src/layouts/",
-        "partials": "./src/partials/",
-        "helpers": "./src/helpers/",
-        "data": "./src/data/"
-    },
-    "CSS": {
-        "src": "/sass/**/*.{sass,scss}",
-        "dest": "./dist/assets/css"
-    },
-    "JS": {
-        "src": "/scripts/**/*.js",
-        "dest": "./dist/assets/scripts"
-    },
-    "IMAGES": {
-        "src": "/images/**/*.{gif,jpg,jpeg,png,svg}",
-        "dest": "./dist/assets/images"
-    },
-    "JSON": {
-        "src": "/json/**/*.json",
-        "dest": "./dist/assets/json"
-    },
-    "FONTS": {
-        "src": "/fonts/**/*.{eot,otf,svg,ttf,woff,woff2}",
-        "dest": "./dist/assets/fonts"
+    "ASSETS": {
+        "src": "assets/**/*.{json,eot,otf,svg,ttf,woff,woff2}",
+        "dest": "assets/"
     },
     "COMPATIBILITY": [
         "last 3 versions",
         "ie >= 11",
         "ios >= 10"
-    ]
+    ],
+    "CSS": {
+        "src": "assets/sass/**/*.{sass,scss}",
+        "dest": "assets/css"
+    },
+    "DOC": {
+        "sassDocOptions" : {
+            "dest": "docs"
+        }
+    },
+    "ERROR": "Error: <%= error.message %>",
+    "HTML": {
+        "entries": "pages/**/*.{html,hbs,handlebars}",
+        "src": "/pages/**/*.{html,hbs,handlebars}",
+        "dest": "",
+        "paniniOptions": {
+            "root": "/src/pages/",
+            "layouts": "/src/layouts/",
+            "partials": "/src/partials/",
+            "helpers": "/src/helpers/",
+            "data": "/src/data/"
+        }
+    },
+    "IMAGES": {
+        "src": "assets/images/**/*.{gif,jpg,jpeg,png,svg}",
+        "dest": "assets/images"
+    },
+    "JS": {
+        "entries": "assets/scripts/main.js",
+        "src": "assets/scripts/**/*.js",
+        "dest": "assets/scripts"
+    },
+    "PATH": {
+        "src": "src/",
+        "dest": "dist/"
+    },
+    "SERVER": {
+        "port": 8000
+    }
 }

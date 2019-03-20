@@ -1,145 +1,202 @@
 /* gulp plugins variables */
-const gulp = require('gulp');
-const plugins = require('gulp-load-plugins');
+const args = require('yargs').argv;
 const browserSync = require('browser-sync');
-const rm  = require('rimraf');
-const { argv } = require('yargs');
 const eyeglass = require('eyeglass');
-const webpackStream = require('webpack-stream');
-const webpack = require('webpack');
+const gulp = require('gulp');
 const named = require('vinyl-named');
 const panini = require('panini');
+const plugins = require('gulp-load-plugins');
+const rm = require('rimraf');
 const sassdoc = require('sassdoc');
+const webpack = require('webpack');
+const webpackStream = require('webpack-stream');
 
 /* Plugins */
 // { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
 const $ = plugins();
+
+/* Configuration */
 const {
-    PATHS, HTML, CSS, JS, IMAGES, JSON, FONTS, COMPATIBILITY, SERVER,
+    ASSETS,
+    COMPATIBILITY,
+    CSS,
+    DOC,
+    ERROR,
+    HTML,
+    IMAGES,
+    JS,
+    PATH,
+    SERVER,
 } = require('./config.json');
 
-const production = !!argv.production;
+const production = !!args.production;
 
-/* tasks declaration */
-function cssTask() {
-    return gulp.src(PATHS.assets + CSS.src)
-        .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
+/* ASSETS - json and fonts */
+function assets() {
+    return gulp
+        .src(PATH.src + ASSETS.src)
+        .pipe(gulp.dest(PATH.dest + ASSETS.dest)); // JSON (.json) and fonts (*.{eot,otf,svg,ttf,woff,woff2})
+}
+
+/* CSS */
+function css() {
+    return gulp
+        .src(PATH.src + CSS.src)
+        .pipe(
+            $.plumber({
+                errorHandler: $.notify.onError(ERROR),
+            }),
+        )
         .pipe($.if(!production, $.sourcemaps.init()))
         .pipe($.sassGlob())
         .pipe($.sass(eyeglass()).on('error', $.sass.logError))
-        .pipe($.autoprefixer({
-            browsers: COMPATIBILITY,
-            cascade: false,
-        }))
-        .pipe($.cleanCss({
-            compatibility: 'ie11',
-        }))
+        .pipe(
+            $.autoprefixer({
+                browsers: COMPATIBILITY,
+                cascade: false,
+            }),
+        )
+        .pipe($.if(production, $.cleanCss({ compatibility: 'ie11' })))
         .pipe($.if(!production, $.sourcemaps.write('.')))
-        .pipe(gulp.dest(CSS.dest));
+        .pipe(gulp.dest(PATH.dest + CSS.dest));
 }
 
-function htmlTask() {
-    return gulp.src(PATHS.src + HTML.src)
-        .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
-        .pipe(panini({
-            root: HTML.root,
-            layouts: HTML.layouts,
-            partials: HTML.partials,
-            helpers: HTML.helpers,
-            data: HTML.data,
-        }))
+/* HTML */
+function html() {
+    return gulp
+        .src(PATH.src + HTML.entries)
+        .pipe($.plumber({ errorHandler: $.notify.onError(ERROR) }))
+        .pipe(panini(HTML.paniniOptions))
         .pipe($.if(production, $.htmlmin({ collapseWhitespace: true })))
-        .pipe(gulp.dest(PATHS.dest));
+        .pipe(gulp.dest(PATH.dest + HTML.dest));
 }
 
+function paniniRefresh(done) {
+    panini.refresh();
+    done();
+}
+
+/* IMAGES */
+function images() {
+    return gulp
+        .src(PATH.src + IMAGES.src)
+        .pipe($.imagemin())
+        .pipe(gulp.dest(PATH.dest + IMAGES.dest));
+}
+
+/* JS */
 const webpackConfig = {
-    mode: (production ? 'production' : 'development'),
+    mode: production ? 'production' : 'development',
     module: {
-        rules: [{
-            test: /.js$/,
-            use: [{
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env'],
-                    compact: false,
-                },
-            }],
-        }],
+        rules: [
+            {
+                test: /.js$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env'],
+                            compact: false,
+                        },
+                    },
+                ],
+            },
+        ],
     },
     devtool: !production && 'source-map',
 };
-function jsTask() {
-    return gulp.src(PATHS.assets + JS.src)
+
+function js() {
+    return gulp
+        .src(PATH.src + JS.entries)
         .pipe(named())
-        .pipe($.plumber({ errorHandler: $.notify.onError('Error: <%= error.message %>') }))
+        .pipe($.plumber({ errorHandler: $.notify.onError(ERROR) }))
         .pipe($.if(!production, $.sourcemaps.init()))
         .pipe(webpackStream(webpackConfig, webpack))
         .pipe($.if(production, $.uglify()))
         .pipe($.if(!production, $.sourcemaps.write('.')))
-        .pipe(gulp.dest(JS.dest));
+        .pipe(gulp.dest(PATH.dest + JS.dest));
 }
 
-function imgTask() {
-    return gulp.src(PATHS.assets + IMAGES.src)
-        .pipe($.imagemin())
-        .pipe(gulp.dest(IMAGES.dest));
-}
-
-function jsonTask() {
-    return gulp.src(PATHS.assets + JSON.src)
-        .pipe(gulp.dest(JSON.dest));
-}
-
-function fontsTask() {
-    return gulp.src(PATHS.assets + FONTS.src)
-        .pipe(gulp.dest(FONTS.dest));
-}
-
-function compress() {
-    return gulp.src('dist/**/*')
+/* OTHERS FUNCTIONS */
+// Archive
+function archive() {
+    return gulp
+        .src('dist/**/*')
         .pipe($.zip(`${process.env.npm_package_name}.zip`))
         .pipe(gulp.dest('./'));
 }
 
-function cleanDist(done) {
-    rm('./dist/', done);
-}
-
-function refresh(done) {
-    browserSync.init({
-        server: {
-            baseDir: PATHS.dest,
-        },
-        port: SERVER.port,
-    });
+// Browser Reload
+function browserReload(done) {
+    browserSync.reload();
     done();
 }
 
+// Clean - Clean destination directory
+function clean(done) {
+    rm(PATH.dest, done);
+}
+
+// Doc - Sass Documentation
 function doc() {
     const sassDocOptions = {
         dest: 'docs',
     };
-    return gulp.src('./src/sass/**/*.scss')
-        .pipe(sassdoc(sassDocOptions));
+    return gulp.src('./src/sass/**/*.scss').pipe(sassdoc(sassDocOptions));
 }
 
-gulp.task('build', gulp.series(cssTask, jsTask, htmlTask, imgTask, jsonTask, fontsTask));
+/* Archive */
+gulp.task('archive', gulp.series(archive));
 
-/* default task and watch */
-gulp.task('watch', gulp.series('build', refresh, () => {
-    gulp.watch(PATHS.src + HTML.src, gulp.series(htmlTask));
-    gulp.watch(PATHS.assets + CSS.src, gulp.series(cssTask));
-    gulp.watch(PATHS.assets + JS.src, gulp.series(jsTask));
-    gulp.watch(PATHS.assets + JSON.src, gulp.series(jsonTask));
-    gulp.watch(PATHS.assets + FONTS.src, gulp.series(fontsTask));
-    gulp.watch(PATHS.src + HTML.src, gulp.series(panini.refresh));
-    gulp.watch('./dist/*.html').on('change', browserSync.reload);
-    gulp.watch('./dist/assets/css/*.css').on('change', browserSync.reload);
-    gulp.watch('./dist/assets/scripts/*.js').on('change', browserSync.reload);
-    gulp.watch('./dist/assets/fonts/*.*').on('change', browserSync.reload);
-    gulp.watch('./dist/assets/json/*.json').on('change', browserSync.reload);
-}));
+/* Build */
+gulp.task('build', gulp.series(clean, assets, css, js, images, html));
 
-gulp.task('default', production ? gulp.series('build') : gulp.series('watch'));
-
+/* Doc */
 gulp.task('doc', gulp.series(doc));
+
+/* Serve */
+gulp.task('serve', (done) => {
+    browserSync.init({
+        server: {
+            baseDir: PATH.dest,
+        },
+        port: SERVER.port,
+    });
+    done();
+});
+
+/* Watching */
+gulp.task(
+    'watch',
+    gulp.series('build', 'serve', () => {
+        // assets
+        gulp.watch(PATH.src + ASSETS.src, gulp.series(assets)).on(
+            'all',
+            gulp.series(browserReload),
+        );
+        // css
+        gulp.watch(PATH.src + CSS.src, gulp.series(css)).on(
+            'all',
+            gulp.series(browserReload),
+        );
+        // html
+        gulp.watch(PATH.src + HTML.src).on(
+            'all',
+            gulp.series(paniniRefresh, html, browserReload),
+        );
+        // images
+        gulp.watch(PATH.src + IMAGES.src, gulp.series(images)).on(
+            'all',
+            gulp.series(browserReload),
+        );
+        // javascript
+        gulp.watch(PATH.src + JS.src, gulp.series(js)).on(
+            'all',
+            gulp.series(browserReload),
+        );
+    }),
+);
+
+/* Default task */
+gulp.task('default', production ? gulp.series('build') : gulp.series('watch'));
