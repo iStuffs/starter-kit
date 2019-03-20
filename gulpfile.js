@@ -1,4 +1,4 @@
-/* gulp plugins variables */
+/* Imports */
 const args = require('yargs').argv;
 const browserSync = require('browser-sync');
 const eyeglass = require('eyeglass');
@@ -140,10 +140,7 @@ function clean(done) {
 
 // Doc - Sass Documentation
 function doc() {
-    const sassDocOptions = {
-        dest: 'docs',
-    };
-    return gulp.src('./src/sass/**/*.scss').pipe(sassdoc(sassDocOptions));
+    return gulp.src('./src/sass/**/*.scss').pipe(sassdoc(DOC.sassDocOptions));
 }
 
 /* Archive */
