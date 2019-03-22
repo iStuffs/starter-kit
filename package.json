@@ -20,9 +20,9 @@
   "author": "iStuffs: Samuel DIDIER-LAURENT <istuffs@gmail.com> (https://istuffs.be)",
   "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/register": "^7.0.0",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/register": "^7.4.0",
     "babel-loader": "^8.0.5",
     "browser-sync": "^2.26.3",
     "eslint": "^5.15.3",
@@ -57,7 +57,7 @@
     "bootstrap-reboot-importer": "^1.0.1",
     "bourbon": "^5.1.0",
     "panini": "^1.6.3",
-    "sassy-normalize": "^8.0.3"
+    "sassy-normalize": "^8.0.4"
   },
   "repository": {
     "type": "git",
