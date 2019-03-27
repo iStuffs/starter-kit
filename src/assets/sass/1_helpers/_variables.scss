@@ -2,9 +2,11 @@
 
 ////
 /// Variables
+///
+/// @author Samuel DIDIER-LAURENT
+/// @group variables/colors
 ////
 
-/// @group variables/colors
 
 // named colors
 // -----
@@ -28,6 +30,7 @@ $color-warning: $yellow;
 $color-danger: $red;
 
 $color-font: $dark;
+$color-selection: tint($color-primary, 40%);
 $color-background: $light;
 $color-foreground: $gray;
 
@@ -41,6 +44,7 @@ $colors: (
     'warning': $color-warning,
     'danger': $color-danger,
     'font': $color-font,
+    'selection': $color-selection,
     'background': $color-background,
     'foreground': $color-foreground
 );

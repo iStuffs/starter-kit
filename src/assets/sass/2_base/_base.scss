@@ -1,6 +1,22 @@
 @charset 'UTF-8';
 
+////
+/// Base
+/// Default row HTML defaults
+///
+/// @author Samuel DIDIER-LAURENT
+////
+
+
+// the 62.5% trick to have 1rem = 10xp
 html {
     font-size: .625em;
     font-size: calc(1em * .625);
+    color: colors('font');
+}
+
+// selection modifier
+::-moz-selection, ::selection {
+  text-shadow: none;
+  background: colors('selection');
 }
