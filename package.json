@@ -1,22 +1,13 @@
 {
-  "name": "front-end-dev-starter-kit",
-  "version": "0.1.0",
-  "description": "starter kit",
-  "main": "gulpfile.js",
+  "name": "futhark-style",
+  "version": "0.0.1",
+  "description": "sass framework/utilities",
+  "main": "index.js",
   "scripts": {
     "start": "gulp",
-    "starter": "npm install && npm run git-remove && npm init && npm run git-start",
-    "git-start": "npm run git-init && npm run github-create && npm run git-remote-add",
-    "git-remove": "rimraf .git",
-    "git-init": "git init",
-    "github-create": "curl -u \"$npm_package_gitUser\" https://api.github.com/user/repos -d '{\"name\":\"'$npm_package_name'\"}'",
-    "git-remote-add": "git remote add origin https://github.com/$npm_package_gitUser/$npm_package_name.git",
-    "gh-pages": "git subtree push --prefix dist origin gh-pages",
     "build": "gulp --production",
-    "doc": "gulp doc",
-    "deploy": "npm run build && npm run gh-pages"
+    "doc": "gulp doc"
   },
-  "gitUser": "iStuffs",
   "author": "iStuffs: Samuel DIDIER-LAURENT <istuffs@gmail.com> (https://istuffs.be)",
   "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
@@ -24,7 +15,6 @@
     "@babel/preset-env": "^7.4.2",
     "@babel/register": "^7.4.0",
     "babel-loader": "^8.0.5",
-    "browser-sync": "^2.26.3",
     "eslint": "^5.15.3",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
@@ -32,22 +22,15 @@
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-clean-css": "^4.0.0",
-    "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^5.0.3",
     "gulp-load-plugins": "^1.5.0",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.1",
     "gulp-sass": "^4.0.2",
     "gulp-sass-glob": "^1.0.9",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2",
-    "gulp-zip": "^4.2.0",
     "rimraf": "^2.6.3",
     "sassdoc": "^2.5.1",
-    "vinyl-named": "^1.1.0",
-    "webpack": "^4.29.6",
-    "webpack-stream": "^5.2.1",
     "yargs": "^13.2.2"
   },
   "directories": {
@@ -56,7 +39,6 @@
   "dependencies": {
     "bootstrap-reboot-importer": "^1.0.1",
     "bourbon": "^5.1.0",
-    "panini": "^1.6.3",
     "sassy-normalize": "^8.0.4"
   },
   "repository": {
