@@ -9,10 +9,10 @@
 ////
 
 
-$border-width: 1px;
-$border-style: solid;
-$border-color: rgba(black, .6);
-$border-radius: 0.5rem;
+$border-width: 1px !default;
+$border-style: solid !default;
+$border-color: rgba(black, .6) !default;
+$border-radius: 0.5rem !default;
 
 $borders: (
     all: $border-width $border-style $border-color,
@@ -20,7 +20,7 @@ $borders: (
     style: $border-style,
     color: $border-color,
     radius: $border-radius
-);
+) !default;
 
 /// return value of the asked index for the `$borders` map
 /// @param { String } $index

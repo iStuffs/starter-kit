@@ -10,12 +10,12 @@
     },
     "DOC": {
         "sassDocOptions" : {
-            "dest": "docs"
+            "dest": "docs/sass"
         }
     },
     "ERROR": "Error: <%= error.message %>",
     "PATH": {
         "src": "src/",
         "dest": "dist/"
-    },
+    }
 }

@@ -12,15 +12,10 @@ const $ = plugins();
 
 /* Configuration */
 const {
-    COMPATIBILITY,
-    CSS,
-    DOC,
-    ERROR,
-    PATH,
+    COMPATIBILITY, CSS, DOC, ERROR, PATH,
 } = require('./config.json');
 
 const production = !!args.production;
-
 
 /* CSS */
 function css() {
@@ -45,7 +40,6 @@ function css() {
         .pipe(gulp.dest(PATH.dest + CSS.dest));
 }
 
-
 // Clean - Clean destination directory
 function clean(done) {
     rm(PATH.dest, done);
@@ -53,9 +47,9 @@ function clean(done) {
 
 // Doc - Sass Documentation
 function doc() {
-    return gulp.src('./src/sass/**/*.scss').pipe(sassdoc(DOC.sassDocOptions));
+    return gulp.src(PATH.src + CSS.src)
+        .pipe(sassdoc(DOC.sassDocOptions));
 }
-
 
 /* Build */
 gulp.task('build', gulp.series(clean, css));

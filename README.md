@@ -1,15 +1,29 @@
 # Futark **:style**
-![](docs/img/futhark-logo.png)
+![](docs/images/futhark-logo.png)
 
 **Featues**:
 
--   Sass map for variables
--   Color System
--   Animation defaults
+
+-   Sass variable system (prefixed variables + sass map + getter function)
+    -   Color System
+    -   Animation defaults
+    -   Border defaults
+    -   Icons
 -   Function utilities
--   Usefull mixins: (aspect-ratio, hover, triangle, text-ellipis)
--   Includes reset (boostrap-reboot, normalize-css)
--   Easy import with eyeglass
+    -   for lists
+    -   for maps
+    -   for numbers
+    -   validator
+-   Minilalist grid system (with flexbox)
+-   Usefull mixins: (aspect-ratio, hover, media-query, triangle, text-ellipis)
+-   Includes third party
+    -   reset ([Normalize-css](https://necolas.github.io/normalize.css/))
+    -   [Animate.css](https://daneden.github.io/animate.css/)
+    -   [Bourbon](https://www.bourbon.io/)
+-   Easy import
+    -   for gulp (with [eyeglass](https://github.com/linkedin/eyeglass/tree/master/packages/eyeglass#readme))
+-   Icon system (works great with [icomoon](https://icomoon.io/))
+
 
 **The SASS folder structure**:
 
@@ -45,7 +59,6 @@ npm i -S @futark:style
 Import in your build tool or Bundler
 
 1. Webpack
-
 
 2. Gulp (with eyeglass)
 

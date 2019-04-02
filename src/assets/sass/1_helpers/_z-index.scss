@@ -6,13 +6,21 @@
 /// @author Samuel DIDIER-LAURENT
 ////
 
+$z-modal: 900 !default;
+$z-dropdown: 800 !default;
+$z-tooltip: 100 !default;
+$z-default: 1 !default;
+$z-below: -1 !default;
+$z-depth: -1000 !default;
+
 $z-index: (
-    'modal': 900,
-    'dropdown': 800,
-    'default': 1,
-    'below': -1,
-    'depth': -1000,
-);
+    'modal': $z-modal,
+    'dropdown': $z-dropdown,
+    'tooltip': $z-tooltip,
+    'default': $z-default,
+    'below': $z-below,
+    'depth': $z-depth,
+) !default;
 
 /// getter function
 @function z-index($value) {

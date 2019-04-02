@@ -30,7 +30,7 @@ $grays: (
     "700": $gray-700,
     "800": $gray-800,
     "900": $gray-900
-);
+) !default;
 
 $blue: #007bff !default;
 $indigo: #6610f2 !default;
@@ -57,7 +57,7 @@ $colors: (
     "white": $white,
     "gray": $gray-600,
     "gray-dark": $gray-800
-);
+) !default;
 
 $primary: $blue !default;
 $secondary: $gray-600 !default;
@@ -77,4 +77,4 @@ $theme-colors: (
     "danger": $danger,
     "light": $light,
     "dark": $dark
-);
+) !default;

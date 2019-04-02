@@ -9,13 +9,13 @@
 ////
 
 
-$animation-duration: 0.5s;
-$animation-easing: ease-in-out;
+$animation-duration: 0.5s !default;
+$animation-easing: ease-in-out !default;
 
 $animations: (
     duration: $animation-duration,
     easing: $animation-easing
-);
+) !default;
 
 /// return value of the asked index for the `$animations` map
 /// @param { String } $index

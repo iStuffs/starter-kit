@@ -7,13 +7,13 @@
 ////
 
 /// variables
-$grid-num-columns: 12;
-$grid-gutter: 2rem;
+$grid-num-columns: 12 !default;
+$grid-gutter: 2rem !default;
 
 $grid: (
     'num-columns': 12,
     'gutter': 2rem
-);
+) !default;
 
 /// getter function
 @function grid($value) {

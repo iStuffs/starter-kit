@@ -48,5 +48,10 @@
   "bugs": {
     "url": "https://github.com/iStuffs/starter-kit/issues"
   },
-  "homepage": "https://github.com/iStuffs/starter-kit#readme"
+  "homepage": "https://github.com/iStuffs/starter-kit#readme",
+    "eyeglass": {
+        "name": "futark-style",
+        "exports": "eyeglass-exports.js",
+        "needs": "^2.0.0"
+    }
 }

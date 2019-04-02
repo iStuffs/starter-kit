@@ -8,26 +8,26 @@
 /// @link https://www.materialui.co/metrocolors
 ////
 
-$lime: #a4c400;
-$green: #60a917;
-$emerald: #008a00;
-$teal: #00aba9;
-$cyan: #1ba1e2;
-$cobalt: #0050ef;
-$indigo: #6a00ff;
-$violet: #aa00ff;
-$pink: #f472d0;
-$magenta: #d80073;
-$crimson: #a20025;
-$red: #e51400;
-$orange: #fa6800;
-$amber: #f0a30a;
-$yellow: #e3c800;
-$brown: #825a2c;
-$olive: #6d8764;
-$steel: #647687;
-$mauve: #76608a;
-$sienna: #a0522d;
+$lime: #a4c400 !default;
+$green: #60a917 !default;
+$emerald: #008a00 !default;
+$teal: #00aba9 !default;
+$cyan: #1ba1e2 !default;
+$cobalt: #0050ef !default;
+$indigo: #6a00ff !default;
+$violet: #aa00ff !default;
+$pink: #f472d0 !default;
+$magenta: #d80073 !default;
+$crimson: #a20025 !default;
+$red: #e51400 !default;
+$orange: #fa6800 !default;
+$amber: #f0a30a !default;
+$yellow: #e3c800 !default;
+$brown: #825a2c !default;
+$olive: #6d8764 !default;
+$steel: #647687 !default;
+$mauve: #76608a !default;
+$sienna: #a0522d !default;
 
 $color-metro: (
     'lime': $lime,
@@ -50,4 +50,4 @@ $color-metro: (
     'steel': $steel,
     'mauve': $mauve,
     'sienna': $sienna
-);
+) !default;
