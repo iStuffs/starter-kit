@@ -1,6 +1,6 @@
 const style = require('./index');
 
-module.exports = function (_eyeglass, sass) {
+module.exports = function (eyeglass, sass) {
     return {
         sassDir: style.includePaths[0],
     };
