@@ -2,8 +2,7 @@
 ////
 /// General border properties for site consistencie
 ///
-/// @group borders
-///
+/// @group variables
 /// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
 ////
 
@@ -34,16 +33,21 @@ $borders: (
     style: $border-style,
     color: $border-color,
     radius: $border-radius
-);
+) !default;
 
 /// returns the value of the asked key for the `$borders` map
-/// @param { String } $key [all] - map index to search
-/// @return { * }
-/// @throw warning if `$index` doesn't exist in the map
+/// @param { String } $key [all] - map key to search
+/// @return { * | null }
+/// @throw warning if `$borders` doesn't exists or isn't a map
+/// @throw warning if the key `$key` doesn't exist in the map `$borders`
 
-@function borders($key){
-    @if not map-has-key($borders, $key) {
+@function borders($key:'all'){
+    @if type-of($borders) != map {
+        @warn "There is no `$borders` map.";
+    } @else if not map-has-key($borders, $key) {
         @warn "No border property found for `#{$key}` in `$borders` map.";
+    } @else {
+        @return map-get($borders, $key);
     }
-  @return map-get($borders, $key);
+    @return null;
 }

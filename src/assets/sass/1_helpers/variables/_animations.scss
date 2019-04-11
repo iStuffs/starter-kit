@@ -2,8 +2,7 @@
 ////
 /// General animation properties for site consistencie
 ///
-/// @group animations
-///
+/// @group variables
 /// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
 ////
 
@@ -17,26 +16,29 @@ $animation-easing: ease-in-out !default;
 
 /// Map for default values of css transitions and animations
 /// @type Map
+/// @prop { * } all [$animation-duration $animation-easing] - Default value for css transition shorthand
 /// @prop { Number } duration [$animation-duration] - Default value for css transition-duration or animation-duration
 /// @prop { String } easing [$animation-easing] - Default value for animation-timing-function or transition-timing-function
 
 $animations: (
+    all: $animation-duration $animation-easing,
     duration: $animation-duration,
     easing: $animation-easing
 ) !default;
 
 /// returns the value of the asked key for the `$animations` map
-/// @param { String } $key
-/// @return { * }
+/// @param { String } $key ['all'] - map key to search
+/// @return { * | null }
 /// @throw warning if `$animations` doesn't exists or isn't a map
 /// @throw warning if the key `$key` doesn't exist in the map `$animations`
 
-@function animations($key){
-    @if type-of($animations) == number {
+@function animations($key:'all'){
+    @if type-of($animations) != map {
         @warn "There is no `$animations` map.";
-    }
-    @if not map-has-key($animations, $key) {
+    } @else if not map-has-key($animations, $key) {
         @warn "No animation/transition property found for `#{$key}` in `$animations` map.";
+    } @else {
+        @return map-get($animations, $key);
     }
-  @return map-get($animations, $key);
+    @return null;
 }

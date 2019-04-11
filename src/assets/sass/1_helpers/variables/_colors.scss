@@ -2,36 +2,36 @@
 ////
 /// Colors
 ///
-/// @author Samuel DIDIER-LAURENT
-/// @group variables/colors
+/// @group variables
+/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
 ////
 
 
 // named colors
 // -----
-$light: white;
-$dark: black;
-$blue: #007bff;
-$yellow: #ffc107;
-$gray: #6c757d;
-$green: #28a745;
-$cyan: #17a2b8;
-$red: #dc3545;
+$light: white !default;
+$dark: black !default;
+$blue: #007bff !default;
+$yellow: #ffc107 !default;
+$gray: #6c757d !default;
+$green: #28a745 !default;
+$cyan: #17a2b8 !default;
+$red: #dc3545 !default;
 
 
 // semantic colors
 // -----
-$color-primary: $blue;
-$color-secondary: $gray;
-$color-success: $green;
-$color-info: $cyan;
-$color-warning: $yellow;
-$color-danger: $red;
+$color-primary: $blue !default;
+$color-secondary: $gray !default;
+$color-success: $green !default;
+$color-info: $cyan !default;
+$color-warning: $yellow !default;
+$color-danger: $red !default;
 
-$color-font: $dark;
-$color-selection: tint($color-primary, 40%);
-$color-background: $light;
-$color-foreground: $gray;
+$color-font: $dark !default;
+$color-selection: tint($color-primary, 40%) !default;
+$color-background: $light !default;
+$color-foreground: $gray !default;
 
 // semantic colors map
 // -----
@@ -46,14 +46,21 @@ $colors: (
     'selection': $color-selection,
     'background': $color-background,
     'foreground': $color-foreground
-);
+) !default;
 
-/// return value of the asked index for the `$colors` map
-/// @param { String } $index
+/// return value of the asked key for the `$colors` map
+/// @param { String } $key ['primary'] - map key to search
+/// @return { Color | null }
+/// @throw warning if `$colors` doesn't exists or isn't a map
+/// @throw warning if the key `$key` doesn't exist in the map `$colors`
 
-@function colors($index){
-    @if not map-has-key($colors, $index) {
-        @warn "No z-index found for `#{$index}` in `$colors` map.";
+@function colors($key:'primary'){
+    @if (type-of($colors) != 'map') {
+        @warn "There is no `$colors` map.";
+    } @else if not map-has-key($colors, $key) {
+        @warn "No color found for `#{$key}` in `$colors` map.";
+    } @else {
+        @return map-get($colors, $key);
     }
-  @return map-get($colors, $index);
+    @return null;
 }

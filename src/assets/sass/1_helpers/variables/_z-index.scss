@@ -1,8 +1,7 @@
 ////
 /// Global z-index manager
 ///
-/// @group z-index
-///
+/// @group variables
 /// @author Samuel DIDIER-LAURENT
 ////
 
@@ -14,10 +13,19 @@ $z-index: (
     'depth': -1000,
 );
 
-/// getter function
-@function z-index($value) {
-    @if not map-has-key($z-index, $value) {
-        @warn "No z-index found for `#{$value}` in `$z-index` map.";
+/// returns the value of the asked key for the `$z-index` map
+/// @param { String } $key ['default'] - map key to search
+/// @return { * | null }
+/// @throw warning if `$z-index` doesn't exists or isn't a map
+/// @throw warning if the key `$key` doesn't exist in the map `$z-index`
+
+@function z-index($key:'default') {
+    @if type-of($z-index) != map {
+        @warn "There is no `$z-index` map.";
+    } @else if not map-has-key($z-index, $key) {
+        @warn "No z-index found for `#{$key}` in `$z-index` map.";
+    } @else {
+        @return map-get($z-index, $key);
     }
-    @return map-get($z-index, $value);
+    @return null;
 }
