@@ -1,5 +1,4 @@
 @charset 'UTF-8';
-
 ////
 /// Main stylesheet scss file
 ///
@@ -7,18 +6,21 @@
 ////
 
 // Helpers
-@import '1_helpers/bourbon.scss';
-@import '1_helpers/variables.scss';
+// Helpers - vendors
+@import '1_helpers/vendors/bourbon.scss';
+@import '1_helpers/vendors/animate-css/animate-css';
+
+// Helpers - variables and map getters
+@import '1_helpers/variables/*.scss';
+
+// Helpers - functions
 @import '1_helpers/functions.scss';
-@import '1_helpers/easings.scss';
-@import '1_helpers/media-query.scss';
-@import '1_helpers/animations/keyframes';
-@import '1_helpers/animations/animations'; // animate.css
-@import '1_helpers/grid';
-@import '1_helpers/borders';
-@import '1_helpers/z-index';
-@import '1_helpers/functions/colors';
+
+// Helpers - mixins
 @import '1_helpers/mixins/*.scss';
+
+// Helpers - utilities ( generates css )
+@import '1_helpers/utilities/*.scss';
 
 // Base
 @import '2_base/reset';

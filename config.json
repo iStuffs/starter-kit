@@ -14,7 +14,7 @@
     },
     "DOC": {
         "sassDocOptions" : {
-            "dest": "docs"
+            "dest": "docs/sass/"
         }
     },
     "ERROR": "Error: <%= error.message %>",

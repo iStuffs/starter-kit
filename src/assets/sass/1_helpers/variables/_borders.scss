@@ -1,0 +1,49 @@
+@charset 'UTF-8';
+////
+/// General border properties for site consistencie
+///
+/// @group borders
+///
+/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
+////
+
+/// Default values of border-width
+/// @type Number
+$border-width: 1px !default;
+/// Default values of border-style
+/// @type String
+$border-style: solid !default;
+/// Default values of border-color
+/// @type Color
+$border-color: rgba(black, .6) !default;
+/// Default values of border-radius
+/// @type Number
+$border-radius: 0.5rem !default;
+
+/// Map for default values of css transitions and animations
+/// @type Map
+/// @prop { * } all [$border-width $border-style $border-color] - Default value for css border shorthand
+/// @prop { Number } width [$border-width] - Default values of border-width
+/// @prop { String } style [$border-style] - Default value of border-style
+/// @prop { Color } color [$border-color] - Default value of border-color
+/// @prop { Number } radius [$border-radius] - Default value of border-radius
+
+$borders: (
+    all: $border-width $border-style $border-color,
+    width: $border-width,
+    style: $border-style,
+    color: $border-color,
+    radius: $border-radius
+);
+
+/// returns the value of the asked key for the `$borders` map
+/// @param { String } $key [all] - map index to search
+/// @return { * }
+/// @throw warning if `$index` doesn't exist in the map
+
+@function borders($key){
+    @if not map-has-key($borders, $key) {
+        @warn "No border property found for `#{$key}` in `$borders` map.";
+    }
+  @return map-get($borders, $key);
+}

@@ -140,7 +140,8 @@ function clean(done) {
 
 // Doc - Sass Documentation
 function doc() {
-    return gulp.src('./src/sass/**/*.scss').pipe(sassdoc(DOC.sassDocOptions));
+    return gulp.src(PATH.src + CSS.src)
+        .pipe(sassdoc(DOC.sassDocOptions));
 }
 
 /* Archive */

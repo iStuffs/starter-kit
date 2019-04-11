@@ -1,0 +1,42 @@
+@charset 'UTF-8';
+////
+/// General animation properties for site consistencie
+///
+/// @group animations
+///
+/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
+////
+
+/// Default values of css transitions and animations
+/// @type Number
+$animation-duration: 0.5s !default;
+
+/// Default variables for css transitions and animations
+/// @type String
+$animation-easing: ease-in-out !default;
+
+/// Map for default values of css transitions and animations
+/// @type Map
+/// @prop { Number } duration [$animation-duration] - Default value for css transition-duration or animation-duration
+/// @prop { String } easing [$animation-easing] - Default value for animation-timing-function or transition-timing-function
+
+$animations: (
+    duration: $animation-duration,
+    easing: $animation-easing
+) !default;
+
+/// returns the value of the asked key for the `$animations` map
+/// @param { String } $key
+/// @return { * }
+/// @throw warning if `$animations` doesn't exists or isn't a map
+/// @throw warning if the key `$key` doesn't exist in the map `$animations`
+
+@function animations($key){
+    @if type-of($animations) == number {
+        @warn "There is no `$animations` map.";
+    }
+    @if not map-has-key($animations, $key) {
+        @warn "No animation/transition property found for `#{$key}` in `$animations` map.";
+    }
+  @return map-get($animations, $key);
+}
