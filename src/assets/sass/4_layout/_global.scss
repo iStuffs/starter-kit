@@ -1,2 +1,20 @@
 @charset 'UTF-8';
 
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::before {
+        content: 'mobile';
+        display: block;
+        @include media('tablet'){
+            content: 'tablet'
+        }
+        @include media('desktop'){
+            content: 'desktop'
+        }
+        @include media('wide'){
+            content: 'wide'
+        }
+    }
+}

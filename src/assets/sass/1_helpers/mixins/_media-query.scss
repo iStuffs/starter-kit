@@ -1,35 +1,68 @@
 @charset 'UTF-8';
+////
+/// Media query System
+///
+/// @group media-query
+/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
+////
 
+
+/// $MEDIA-TYPES
+/// @link https://www.w3.org/TR/mediaqueries-4/#media-types
 $MEDIA-TYPES: (
     'all',
     'print',
     'screen',
-    'speech'
-);
+    'speech',
+    // theses that follows are deprecated
+    'aural',
+    'braille',
+    'embossed',
+    'handheld',
+    'projection',
+    'tty',
+    'tv'
+) !default;
+
+@function media-types($value:'screen'){
+    @if type-of($MEDIA-TYPES) != list {
+        @warn "There is no `$MEDIA-TYPES` list.";
+    } @else if index($MEDIA-TYPES, $value) == null {
+        @warn "No media type `#{$value}` found in `$MEDIA-TYPES` list.";
+    } @else {
+        @return $value;
+    }
+    @return null;
+}
+
 /// $BREAKPOINTS
 /// @type List
+$PIXEL: .0625rem;
 $BREAKPOINTS: (
-    'mobile': 320px,
-    'tablet': 768px,
-    'desktop': 1024px,
-    'wide': 1600px) !default;
+    'mobile': 20rem,
+    'tablet': 48rem,
+    'desktop': 64rem,
+    'wide': 100rem
+) !default;
+
+@function breakpoints($key){
+    @if type-of($BREAKPOINTS) != map {
+        @warn "There is no `$BREAKPOINTS` map.";
+    } @else if not map-has-key($BREAKPOINTS, $key) {
+        @warn "No breakpoint value found for `#{$key}` in `$BREAKPOINTS` map.";
+    } @else {
+        @return map-get($BREAKPOINTS, $key);
+    }
+    @return null;
+}
 
 /// Mixin to manage responsive breakpoints
-/// @author Hugo Giraudel
+/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
 /// @param {String} $breakpoint - Breakpoint name
 /// @require $BREAKPOINTS
 
-@mixin media($breakpoint) {
-
-    // If the key exists in the map
-    @if map-has-key($BREAKPOINTS, $breakpoint) {
-
-        // Prints a media query based on the value
-        @media (min-width: map-get($BREAKPOINTS, $breakpoint)) {
-            @content;
-        }
-    } @else {
-        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        +"Available breakpoints are: #{map-keys($BREAKPOINTS)}.";
+@mixin media($breakpoint, $media:'screen') {
+    @media #{media-types($media)} and (min-width: breakpoints($breakpoint)) {
+        @content;
     }
 }
