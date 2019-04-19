@@ -1,22 +1,30 @@
+@charset 'UTF-8';
 ////
 /// Work around to preserve aspect ratio
 ///
 /// @group mixin
-///
-/// @author Samuel DIDIER-LAURENT
+/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
 ///
 /// @link https://ratiobuddy.com/
 /// @link https://css-tricks.com/snippets/sass/maintain-aspect-ratio-mixin/
 ////
 
-@mixin aspect-ratio ($width, $height) {
+
+/// @param { number } $width [16] - width of the constraint
+/// @param { number } $height [9] - height of the constraint
+/// @throw warning if `$width` and `$height` are not comparables
+
+@mixin aspect-ratio ($width: 16, $height: 9) {
+    @if not comparable($width, $height) {
+        @warn "`$width` and `$height` are not comparables, this may conduct of wrong aspect ratio"
+    }
   position: relative;
 
   &::before {
     content: '';
     display: block;
     width: 100%;
-    padding-top: ($height / $width) * 100%;
+    padding-top: (strip-unit($height) / strip-unit($width)) * 100%;
   }
 
   > * {

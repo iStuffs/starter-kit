@@ -1,11 +1,10 @@
+@charset 'UTF-8';
 ////
 /// Print css based on a map with css-property: value content
 ///
 /// @group mixin
-///
+/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
 /// @param {map} $map - map(css-property: value)
-///
-/// @author Samuel DIDIER-LAURENT
 ////
 
 @mixin print-css ($map) {

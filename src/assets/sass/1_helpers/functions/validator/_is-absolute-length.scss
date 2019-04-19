@@ -1,6 +1,5 @@
 @charset 'UTF-8';
-
-///
+////
 /// Check if $value is an absolute length
 ///
 /// @group validators
@@ -10,7 +9,7 @@
 ///
 /// @require is-number
 /// @require $UNITS
-
+////
 @function is-absolute-length($value) {
     @return is-number($value) and index(map-get($UNITS, 'absolute-length'), unit($value)) !=null;
 }

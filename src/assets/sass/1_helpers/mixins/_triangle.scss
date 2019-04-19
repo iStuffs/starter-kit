@@ -1,12 +1,12 @@
+@charset 'UTF-8';
 ////
 /// Triangle helper mixin
 ///
 /// @group mixin
-///
-/// @author Samuel DIDIER-LAURENT
+/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
 ///
 /// @param {Direction} $direction - Triangle direction, either `top`, `right`, `bottom` or `left`
-/// @param {Color} $color [currentcolor] - Triangle color 
+/// @param {Color} $color [currentcolor] - Triangle color
 /// @param {Length} $size [1em] - Triangle size
 ////
 
@@ -20,9 +20,9 @@
   content: '';
   z-index: 2;
   border-#{opposite-position($direction)}: ($size * 1.5) solid $color;
-  
+
   $perpendicular-borders: $size solid transparent;
-  
+
   @if $direction == top or $direction == bottom {
     border-left:   $perpendicular-borders;
     border-right:  $perpendicular-borders;

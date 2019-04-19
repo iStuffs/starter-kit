@@ -1,6 +1,7 @@
 @charset 'UTF-8';
 
 // import functions
+@import 'functions/strip-unit';
 @import 'functions/is-true';
 @import 'functions/str-compare';
 @import 'functions/missing-dependencies';
