@@ -20,3 +20,7 @@ html {
   text-shadow: none;
   background: colors('selection');
 }
+
+[tabindex] {
+    cursor: pointer;
+}
