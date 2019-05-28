@@ -54,6 +54,7 @@
     "doc": "docs"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "bootstrap-reboot-importer": "^1.0.1",
     "bourbon": "^5.1.0",
     "panini": "^1.6.3",
