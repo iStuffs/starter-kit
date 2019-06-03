@@ -1,17 +1,23 @@
 @charset 'UTF-8';
-////
-/// General animation properties for site consistencie
-///
-/// @group variables
-/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
-////
+/**
+* @description
+* General animation properties for site consistencie
+*
+* @nuclide animation
+* @section Helpers > Variables
+*/
 
-/// Default values of css transitions and animations
-/// @type Number
+/**
+* @description Default values of css transitions and animations
+* @nuclide animation-duration
+* @section Helpers > Variables
+*/
 $animation-duration: 0.5s !default;
 
-/// Default variables for css transitions and animations
-/// @type String
+/*
+* Default variables for css transitions and animations
+* @nuclide animation-easing
+*/
 $animation-easing: ease-in-out !default;
 
 /// Map for default values of css transitions and animations
@@ -26,11 +32,14 @@ $animations: (
     easing: $animation-easing
 ) !default;
 
-/// returns the value of the asked key for the `$animations` map
-/// @param { String } $key ['all'] - map key to search
-/// @return { * | null }
-/// @throw warning if `$animations` doesn't exists or isn't a map
-/// @throw warning if the key `$key` doesn't exist in the map `$animations`
+/**
+* returns the value of the asked key for the `$animations` map
+* @mixin animations
+* @param $key ['all'] - map key to search
+* @section Helpers > Variables
+* @example
+*   transition: animations('duration') animations('easing');:
+*/
 
 @function animations($key:'all'){
     @if type-of($animations) != map {

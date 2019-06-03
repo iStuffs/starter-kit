@@ -1,0 +1,1 @@
+{"title":"Nucleus","files":["src/assets/sass/*.scss","src/assets/sass/**/*.scss"],"target":"docs/","css":"dist/assets/css/style.css","namespace":"page","verbose":3,"counterCSS":null,"staticLipsum":false,"placeholderService":false}
