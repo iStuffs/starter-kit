@@ -1,11 +1,13 @@
-import hello from './modules/hello';
-import { answer as axios } from './axios';
+import '@babel/polyfill';
+import Vue from 'vue';
+import store from './store';
+import vPageWrapper from './components/vPageWrapper';
 
-hello();
-axios.get()
-    .then((response) => {
-        console.log(response.data.answer);
-    })
-    .catch((error) => {
-        console.warn(error);
-    });
+new Vue({
+    el: '#app',
+    store,
+    components: {
+        vPageWrapper,
+    },
+    delimiters: ['#{', '}'],
+});

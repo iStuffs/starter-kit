@@ -15,15 +15,20 @@
         <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-
-        
-        <section>
-            <h1 tabindex="0">Hello Starter Kit</h1>
-        </section>
-        <div>
-        
-        </div>
-
+            <div id="app" v-cloak>
+                <v-page-wrapper type="" page="" inline-template>
+                    <div>
+                            <section>
+                                <h1 tabindex="0">Hello Starter Kit</h1>
+                            </section>
+                            #{ message }
+                            <v-message></v-message>
+                            <div>
+                            
+                            </div>
+                    </div>
+                </v-page-wrapper>
+            </div>
         <script src="assets/scripts/main.js"></script>
     </body>
 </html>

@@ -11,6 +11,8 @@ const sassdoc = require('sassdoc');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 
+const { VueLoaderPlugin } = require('vue-loader');
+
 /* Plugins */
 // { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
 const $ = plugins();
@@ -101,7 +103,36 @@ const webpackConfig = {
                     },
                 ],
             },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                ],
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
         ],
+    },
+    plugins: [
+        // make sure to include the plugin!
+        new VueLoaderPlugin(),
+    ],
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+            vue$: 'vue/dist/vue.common.js',
+        },
     },
     devtool: !production && 'source-map',
 };

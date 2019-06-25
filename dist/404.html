@@ -15,12 +15,16 @@
         <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-
-        <h1>Page Not Found</h1>
-        <p>Sorry, but the page you were trying to view does not exist.</p>
-        <!-- IE needs 512+ bytes: https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/ -->
-        
-
+            <div id="app" v-cloak>
+                <v-page-wrapper type="" page="" inline-template>
+                    <div>
+                        <h1>Page Not Found</h1>
+                        <p>Sorry, but the page you were trying to view does not exist.</p>
+                        <!-- IE needs 512+ bytes: https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/ -->
+                        
+                    </div>
+                </v-page-wrapper>
+            </div>
         <script src="assets/scripts/main.js"></script>
     </body>
 </html>

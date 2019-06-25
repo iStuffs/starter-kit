@@ -14,9 +14,13 @@
     </head>
     <body>
         {{> browse-happy}}
-
-        {{> body}}
-
+            <div id="app" v-cloak>
+                <v-page-wrapper type="{{PageType}}" page="{{PageClass}}" inline-template>
+                    <div>
+                        {{> body}}
+                    </div>
+                </v-page-wrapper>
+            </div>
         {{> google-analytics}}
         <script src="assets/scripts/main.js"></script>
     </body>
