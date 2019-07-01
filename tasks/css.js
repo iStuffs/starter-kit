@@ -1,7 +1,8 @@
-const args = require('yargs').argv;
+const { src, dest } = require('gulp');
 const eyeglass = require('eyeglass');
-const gulp = require('gulp');
 const plugins = require('gulp-load-plugins');
+
+const production = require('./helper/mode');
 
 /* Configuration */
 const {
@@ -12,22 +13,18 @@ const {
 } = require('./config.json');
 
 /* Plugins */
-// { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
+// { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, uglify, zip }
 const $ = plugins();
-
-const production = !!args.production;
 
 
 /* CSS */
 function css() {
-    return gulp
-        .src(PATH.src + CSS.src)
+    return src(PATH.src + CSS.src, { sourcemaps: !production })
         .pipe(
             $.plumber({
                 errorHandler: $.notify.onError(ERROR),
             }),
         )
-        .pipe($.if(!production, $.sourcemaps.init()))
         .pipe($.sassGlob())
         .pipe($.sass(eyeglass()).on('error', $.sass.logError))
         .pipe(
@@ -37,8 +34,7 @@ function css() {
             }),
         )
         .pipe($.if(production, $.cleanCss({ compatibility: 'ie11' })))
-        .pipe($.if(!production, $.sourcemaps.write('.')))
-        .pipe(gulp.dest(PATH.dest + CSS.dest));
+        .pipe(dest(PATH.dest + CSS.dest, { sourcemaps: '.' }));
 }
 
 module.exports = css;

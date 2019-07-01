@@ -2,7 +2,7 @@ const args = require('yargs').argv;
 
 const production = !!args.production;
 
-exports.default = production;
+module.exports = production;
 
 /*
 // alternative to arguments

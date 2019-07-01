@@ -7,7 +7,7 @@ const webpackStream = require('webpack-stream');
 const webpackConfig = require('./webpack.config');
 
 /* Plugins */
-// { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
+// { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, uglify, zip }
 const $ = plugins();
 
 /* Configuration */
@@ -21,14 +21,12 @@ const production = !!args.production;
 
 function js() {
     return gulp
-        .src(PATH.src + JS.entries)
+        .src(PATH.src + JS.entries, { sourcemaps: !production })
         .pipe(named())
         .pipe($.plumber({ errorHandler: $.notify.onError(ERROR) }))
-        .pipe($.if(!production, $.sourcemaps.init()))
         .pipe(webpackStream(webpackConfig, webpack))
         .pipe($.if(production, $.uglify()))
-        .pipe($.if(!production, $.sourcemaps.write('.')))
-        .pipe(gulp.dest(PATH.dest + JS.dest));
+        .pipe(gulp.dest(PATH.dest + JS.dest, { sourcemaps: '.' }));
 }
 
 module.exports = js;

@@ -4,7 +4,7 @@ const panini = require('panini');
 const plugins = require('gulp-load-plugins');
 
 /* Plugins */
-// { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
+// { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, uglify, zip }
 const $ = plugins();
 
 /* Configuration */
