@@ -9,7 +9,7 @@ const {
     IMAGES,
     JS,
     PATH,
-} = require('./config.json');
+} = require('./tasks/config.json');
 const production = require('./tasks/helper/mode');
 
 /* Tasks */
@@ -40,30 +40,20 @@ const docTask = series(doc);
 /* Watching */
 const watchTask = series(buildTask, serve, () => {
     // assets
-    watch(PATH.src + ASSETS.src, series(assets)).on(
-        'all',
-        series(browserReload),
-    );
+    watch(PATH.src + ASSETS.src, series(assets))
+        .on('all', series(browserReload));
     // css
-    watch(PATH.src + CSS.src, series(css)).on(
-        'all',
-        series(browserReload),
-    );
+    watch(PATH.src + CSS.src, series(css))
+        .on('all', series(browserReload));
     // html
-    watch(PATH.src + HTML.src).on(
-        'all',
-        series(paniniRefresh, html, browserReload),
-    );
+    watch(PATH.src + HTML.src)
+        .on('all', series(paniniRefresh, html, browserReload));
     // images
-    watch(PATH.src + IMAGES.src, series(images)).on(
-        'all',
-        series(browserReload),
-    );
+    watch(PATH.src + IMAGES.src, series(images))
+        .on('all', series(browserReload));
     // javascript
-    watch(PATH.src + JS.src, series(js)).on(
-        'all',
-        series(browserReload),
-    );
+    watch(PATH.src + JS.src, series(js))
+        .on('all', series(browserReload));
 });
 
 /* Exports */

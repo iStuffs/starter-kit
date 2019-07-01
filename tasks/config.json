@@ -20,7 +20,7 @@
     "ERROR": "Error: <%= error.message %>",
     "HTML": {
         "entries": "pages/**/*.{html,hbs,handlebars}",
-        "src": "/pages/**/*.{html,hbs,handlebars}",
+        "src": "**/*.{html,hbs,handlebars}",
         "dest": "",
         "paniniOptions": {
             "root": "/src/pages/",
