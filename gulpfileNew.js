@@ -1,26 +1,35 @@
 /* Imports */
-const args = require('yargs').argv;
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
+const named = require('vinyl-named');
+const webpack = require('webpack');
+const plugins = require('gulp-load-plugins');
+const webpackStream = require('webpack-stream');
+const webpackConfig = require('./tasks/webpack.config');
+const production = require('./tasks/helper/mode');
+
+/* Plugins */
+// { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, sourcemaps, uglify, zip }
+const $ = plugins();
 
 const {
     archive,
-    assets,
     browserReload,
     clean,
+    copy,
     css,
     doc,
     html,
     images,
-    js,
+    // js,
     paniniRefresh,
 } = require('./tasks');
-
 
 /* Configuration */
 const {
     ASSETS,
     CSS,
+    ERROR,
     HTML,
     IMAGES,
     JS,
@@ -28,13 +37,23 @@ const {
     SERVER,
 } = require('./config.json');
 
-const production = !!args.production;
+function js() {
+    return gulp
+        .src(PATH.src + JS.entries)
+        .pipe(named())
+        .pipe($.plumber({ errorHandler: $.notify.onError(ERROR) }))
+        .pipe($.if(!production, $.sourcemaps.init()))
+        .pipe(webpackStream(webpackConfig, webpack))
+        .pipe($.if(production, $.uglify()))
+        .pipe($.if(!production, $.sourcemaps.write('.')))
+        .pipe(gulp.dest(PATH.dest + JS.dest));
+}
 
 /* Archive */
 gulp.task('archive', gulp.series(archive));
 
 /* Build */
-gulp.task('build', gulp.series(clean, assets, css, js, images, html));
+gulp.task('build', gulp.series(clean, copy, css, js, images, html));
 
 /* Doc */
 gulp.task('doc', gulp.series(doc));
@@ -55,7 +74,7 @@ gulp.task(
     'watch',
     gulp.series('build', 'serve', () => {
         // assets
-        gulp.watch(PATH.src + ASSETS.src, gulp.series(assets)).on(
+        gulp.watch(PATH.src + ASSETS.src, gulp.series(copy)).on(
             'all',
             gulp.series(browserReload),
         );
