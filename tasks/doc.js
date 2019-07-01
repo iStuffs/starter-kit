@@ -1,4 +1,4 @@
-const gulp = require('gulp');
+const { src } = require('gulp');
 const sassdoc = require('sassdoc');
 
 /* Configuration */
@@ -10,7 +10,7 @@ const {
 
 // Doc - Sass Documentation
 function doc() {
-    return gulp.src(PATH.src + CSS.src)
+    return src(PATH.src + CSS.src)
         .pipe(sassdoc(DOC.sassDocOptions));
 }
 
