@@ -3026,5 +3026,3 @@ body {
     @media screen and (min-width: 100rem) {
       body::before {
         content: 'wide'; } }
-
-/*# sourceMappingURL=style.css.map */
