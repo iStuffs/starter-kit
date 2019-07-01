@@ -8,6 +8,7 @@ const html = require('./html');
 const images = require('./images');
 const js = require('./js');
 const paniniRefresh = require('./paniniRefresh');
+const serve = require('./serve');
 
 module.exports = {
     archive,
@@ -20,4 +21,5 @@ module.exports = {
     images,
     js,
     paniniRefresh,
+    serve,
 };
