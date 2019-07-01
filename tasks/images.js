@@ -1,9 +1,5 @@
-const gulp = require('gulp');
-const plugins = require('gulp-load-plugins');
-
-/* Plugins */
-// { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, uglify, zip }
-const $ = plugins();
+const { src, dest, lastRun } = require('gulp');
+const imagemin = require('gulp-imagemin');
 
 /* Configuration */
 const {
@@ -13,10 +9,9 @@ const {
 
 /* IMAGES */
 function images() {
-    return gulp
-        .src(PATH.src + IMAGES.src)
-        .pipe($.imagemin())
-        .pipe(gulp.dest(PATH.dest + IMAGES.dest));
+    return src(PATH.src + IMAGES.src, { since: lastRun(images) })
+        .pipe(imagemin())
+        .pipe(dest(PATH.dest + IMAGES.dest));
 }
 
 module.exports = images;
