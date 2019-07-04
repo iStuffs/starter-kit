@@ -4,6 +4,7 @@
   "description": "starter kit",
   "main": "gulpfile.js",
   "scripts": {
+    "storybook": "start-storybook",
     "start": "gulp",
     "starter": "npm install && npm run git-remove && npm init && npm run git-start",
     "git-start": "npm run git-init && npm run github-create && npm run git-remote-add",
@@ -23,6 +24,8 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
+    "@storybook/preset-scss": "^1.0.2",
+    "@storybook/vue": "^5.1.9",
     "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
     "css-loader": "^3.0.0",
@@ -47,6 +50,7 @@
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
     "sassdoc": "^2.7.0",
+    "style-loader": "^0.23.1",
     "vinyl-named": "^1.1.0",
     "vue-loader": "^15.7.0",
     "vue-style-loader": "^4.1.2",
@@ -60,6 +64,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
+    "babel-preset-vue": "^2.0.2",
     "bootstrap-reboot-importer": "^1.0.1",
     "bourbon": "^5.1.0",
     "panini": "^1.6.3",
