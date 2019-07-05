@@ -8,42 +8,42 @@
 /// @link https://www.materialui.co/socialcolors
 ////
 
-$color-facebook: #3b5999;
-$color-messenger: #0084ff;
-$color-twitter: #55acee;
-$color-linkedin: #0077B5;
-$color-skype: #00AFF0;
-$color-dropbox: #007ee5;
-$color-wordpress: #21759b;
-$color-vimeo: #1ab7ea;
-$color-slideshare: #0077b5;
-$color-vk: #4c75a3;
-$color-tumblr: #34465d;
-$color-yahoo: #410093;
-$color-googleplus: #dd4b39;
-$color-pinterest: #bd081c;
-$color-youtube: #cd201f;
-$color-stumbleupon: #eb4924;
-$color-reddit: #ff5700;
-$color-quora: #b92b27;
-$color-yelp: #af0606;
-$color-weibo: #df2029;
-$color-producthunt: #da552f;
-$color-hackernews: #ff6600;
-$color-soundcloud: #ff3300;
-$color-blogger: #f57d00;
-$color-whatsapp: #25D366;
-$color-wechat: #09b83e;
-$color-line: #00c300;
-$color-medium: #02b875;
-$color-vine: #00b489;
-$color-slack: #3aaf85;
-$color-instagram: #e4405f;
-$color-dribbble: #ea4c89;
-$color-flickr: #ff0084;
-$color-foursquare: #f94877;
-$color-behance: #131418;
-$color-snapchat: #FFFC00;
+$color-facebook: #3b5999 !default;
+$color-messenger: #0084ff !default;
+$color-twitter: #55acee !default;
+$color-linkedin: #0077B5 !default;
+$color-skype: #00AFF0 !default;
+$color-dropbox: #007ee5 !default;
+$color-wordpress: #21759b !default;
+$color-vimeo: #1ab7ea !default;
+$color-slideshare: #0077b5 !default;
+$color-vk: #4c75a3 !default;
+$color-tumblr: #34465d !default;
+$color-yahoo: #410093 !default;
+$color-googleplus: #dd4b39 !default;
+$color-pinterest: #bd081c !default;
+$color-youtube: #cd201f !default;
+$color-stumbleupon: #eb4924 !default;
+$color-reddit: #ff5700 !default;
+$color-quora: #b92b27 !default;
+$color-yelp: #af0606 !default;
+$color-weibo: #df2029 !default;
+$color-producthunt: #da552f !default;
+$color-hackernews: #ff6600 !default;
+$color-soundcloud: #ff3300 !default;
+$color-blogger: #f57d00 !default;
+$color-whatsapp: #25D366 !default;
+$color-wechat: #09b83e !default;
+$color-line: #00c300 !default;
+$color-medium: #02b875 !default;
+$color-vine: #00b489 !default;
+$color-slack: #3aaf85 !default;
+$color-instagram: #e4405f !default;
+$color-dribbble: #ea4c89 !default;
+$color-flickr: #ff0084 !default;
+$color-foursquare: #f94877 !default;
+$color-behance: #131418 !default;
+$color-snapchat: #FFFC00 !default;
 
 $color-socials: (
     'facebook': $color-facebook,
@@ -82,4 +82,4 @@ $color-socials: (
     'foursquare': $color-foursquare,
     'behance': $color-behance,
     'snapchat': $color-snapchat
-);
+) !default;
