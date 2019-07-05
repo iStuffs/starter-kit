@@ -2,7 +2,7 @@ import Vue from 'vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { storiesOf } from '@storybook/vue';
 // eslint-disable-next-line import/no-unresolved
-import vButton from '../src/assets/scripts/components/vButton';
+import vButton from '@components/vButton';
 
 Vue.component('vButton', vButton);
 

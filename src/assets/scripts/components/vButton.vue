@@ -72,10 +72,10 @@ export default {
     text-shadow: none;
     display: inline-flex;
     background-color: transparent;
-    box-sizing: border-box;
     padding: 0;
     border: none;
     font-family: sans-serif;
     font-size: 1.6rem;
+    text-decoration: none;
 }
 </style>
