@@ -11,7 +11,7 @@ $z-index: (
     'default': 1,
     'below': -1,
     'depth': -1000,
-);
+)  !default;
 
 /// returns the value of the asked key for the `$z-index` map
 /// @param { String } $key ['default'] - map key to search
