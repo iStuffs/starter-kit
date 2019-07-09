@@ -21,7 +21,7 @@
   "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
     "@babel/core": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-env": "^7.5.2",
     "@babel/register": "^7.4.4",
     "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
@@ -45,7 +45,7 @@
     "rimraf": "^2.6.3",
     "sassdoc": "^2.7.0",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.35.2",
+    "webpack": "^4.35.3",
     "webpack-stream": "^5.2.1",
     "yargs": "^13.2.4"
   },
