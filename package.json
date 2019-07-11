@@ -20,8 +20,8 @@
   "author": "iStuffs: Samuel DIDIER-LAURENT <istuffs@gmail.com> (https://istuffs.be)",
   "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
-    "@babel/core": "^7.5.0",
-    "@babel/preset-env": "^7.5.2",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
     "@babel/register": "^7.4.4",
     "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
@@ -55,7 +55,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "bootstrap-reboot-importer": "^1.0.1",
-    "bourbon": "^5.1.0",
+    "bourbon": "^6.0.0",
     "panini": "^1.6.3",
     "sassy-normalize": "^8.0.4"
   },
