@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "sass framework/utilities",
   "main": "index.js",
-  "style": "_futhark.js",
+  "style": "sass/_futhark-style.scss",
   "scripts": {
     "start": "gulp",
     "build": "gulp --production",
@@ -55,7 +55,7 @@
   },
   "homepage": "https://github.com/iStuffs/starter-kit#readme",
   "eyeglass": {
-    "name": "futark",
+    "name": "futark-style",
     "exports": "eyeglass-exports.js",
     "needs": "^2.0.0"
   }

@@ -18,16 +18,14 @@
 @import '1_helpers/borders';
 @import '1_helpers/z-index';
 @import '1_helpers/functions/colors';
-@import '1_helpers/mixins/*.scss';
+@import '1_helpers/mixins/aspect-ratio.scss';
+@import '1_helpers/mixins/hover.scss';
+@import '1_helpers/mixins/print-css.scss';
+@import '1_helpers/mixins/text-ellipsis.scss';
+@import '1_helpers/mixins/triangle.scss';
 
 // Base
 @import '2_base/reset';
 @import '2_base/typography';
 @import '2_base/base';
 @import '2_base/icons/base';
-
-// Components
-@import '3_components/*.scss';
-
-// Layout
-@import '4_layout/*.scss';
