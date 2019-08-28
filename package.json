@@ -55,7 +55,7 @@
   },
   "homepage": "https://github.com/iStuffs/starter-kit#readme",
   "eyeglass": {
-    "name": "futark-style",
+    "name": "futhark-style",
     "exports": "eyeglass-exports.js",
     "needs": "^2.0.0"
   }
