@@ -20,12 +20,12 @@
   "author": "iStuffs: Samuel DIDIER-LAURENT <istuffs@gmail.com> (https://istuffs.be)",
   "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/register": "^7.5.5",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
     "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
-    "eslint": "^6.2.1",
+    "eslint": "^6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eyeglass": "^2.4.1",
@@ -43,9 +43,9 @@
     "gulp-uglify": "^3.0.2",
     "gulp-zip": "^5.0.0",
     "rimraf": "^3.0.0",
-    "sassdoc": "^2.7.0",
+    "sassdoc": "^2.7.1",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.39.2",
+    "webpack": "^4.40.2",
     "webpack-stream": "^5.2.1",
     "yargs": "^14.0.0"
   },
@@ -53,7 +53,7 @@
     "doc": "docs"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.4",
+    "@babel/polyfill": "^7.6.0",
     "bootstrap-reboot-importer": "^1.0.1",
     "bourbon": "^6.0.0",
     "panini": "^1.6.3",
