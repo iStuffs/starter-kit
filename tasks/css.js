@@ -29,7 +29,6 @@ function css() {
         .pipe($.sass(eyeglass()).on('error', $.sass.logError))
         .pipe(
             $.autoprefixer({
-                browsers: COMPATIBILITY,
                 cascade: false,
             }),
         )
