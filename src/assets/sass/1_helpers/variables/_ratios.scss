@@ -1,0 +1,52 @@
+$DOUBLE-OCTAVE : 4;
+$PI : 3.14159265359;
+$MAJOR-TWELFTH : 3;
+$MAJOR-ELEVENTH : 2.666666667;
+$MAJOR-TENTH : 2.5;
+$OCTAVE : 2;
+$MAJOR-SEVENTH : 1.875;
+$MINOR-SEVENTH : 1.777777778;
+$MAJOR-SIXTH : 1.666666667;
+$PHI : 1.618034;
+$GOLDEN : $PHI;
+$MINOR-SIXTH : 1.6;
+$FIFTH : 1.5;
+$AUGMENTED-FOURTH : 1.41421;
+$FOURTH : 1.333333333;
+$MAJOR-THIRD : 1.25;
+$MINOR-THIRD : 1.2;
+$MAJOR-SECOND : 1.125;
+$MINOR-SECOND : 1.066666667;
+
+$ratios: (
+    'double-octave': $DOUBLE-OCTAVE,
+    'pi': $PI,
+    'major-twelfth': $MAJOR-TWELFTH,
+    'major-eleventh': $MAJOR-ELEVENTH,
+    'major-tenth': $MAJOR-TENTH,
+    'octave': $OCTAVE,
+    'major-seventh': $MAJOR-SEVENTH,
+    'minor-seventh': $MINOR-SEVENTH,
+    'major-sixth': $MAJOR-SIXTH,
+    'phi': $PHI,
+    'golden': $GOLDEN,
+    'minor-sixth': $MINOR-SIXTH,
+    'fifth': $FIFTH,
+    'augmented-fourth': $AUGMENTED-FOURTH,
+    'fourth': $FOURTH,
+    'major-third': $MAJOR-THIRD,
+    'minor-third': $MINOR-THIRD,
+    'major-second': $MAJOR-SECOND,
+    'minor-second': $MINOR-SECOND
+) !default;
+
+@function ratios($ratio: 'golden') {
+    @if type-of($ratios) != map {
+        @warn "There is no `$ratios` map.";
+    } @else if not map-has-key($ratios, $ratio) {
+        @warn "No ratio property found for `#{$ratio}` in `$animations` map.";
+    } @else {
+        @return map-get($ratios, $ratio);
+    }
+    @return null;
+}

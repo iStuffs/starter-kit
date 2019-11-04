@@ -1,0 +1,13 @@
+/// @require ratio
+
+$typography-ratio: ratios() !default;
+$typography-base: 1.6rem !default;
+$typography-line-height: 1.3 !default;
+
+$typography: (
+    'ratio': $typography-ratio,
+    'base': $typography-base,
+    'line-height': $typography-line-height
+) !default;
+
+

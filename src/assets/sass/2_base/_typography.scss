@@ -52,3 +52,18 @@ a:not([class]){
         }
     }
 }
+
+/// @require simple-pow
+/// @require decimal-round
+/// @require typography
+@function typography-scale($level: 0) {
+    @return decimal-round(simple-pow(map-get($typography, 'ratio'), $level) * map-get($map: $typography, $key: 'base'), 1);
+}
+
+
+/// @output headings (h1-h6) font size scale
+@for $i from 1 through 6 {
+    h#{$i}, .h#{$i}{
+        font-size: typography-scale(7 - $i - 2);
+    }
+}
