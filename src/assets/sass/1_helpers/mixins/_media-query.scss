@@ -39,10 +39,10 @@ $MEDIA-TYPES: (
 /// @type List
 $PIXEL: .0625rem;
 $BREAKPOINTS: (
-    'mobile': 20rem,
-    'tablet': 48rem,
-    'desktop': 64rem,
-    'wide': 100rem
+    'mobile': 20rem,  // 320px
+    'tablet': 48rem,  // 768px
+    'desktop': 64rem, // 1024px
+    'wide': 100rem    // 1600px
 ) !default;
 
 @function breakpoints($key){

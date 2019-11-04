@@ -1,0 +1,30 @@
+@charset 'UTF-8';
+////
+/// General spacing properties for site consistencie
+///
+/// @group variables
+/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
+////
+
+$spacing-unit: 1rem;
+$spacing: (
+    'xxs':  $spacing-unit / 8,
+    'xs':   $spacing-unit / 4,
+    's':    $spacing-unit / 2,
+    'm':    $spacing-unit,
+    'l':    $spacing-unit * 2,
+    'xl':   $spacing-unit * 3,
+    'xxl':  $spacing-unit * 4,
+    'xxxl': $spacing-unit * 5
+) !default;
+
+@function spacing($size: 'm') {
+    @if type-of($spacing) != map {
+        @warn "There is no `$spacing` map.";
+    } @else if not map-has-key($spacing, $size) {
+        @warn "No spacing property found for `#{$size}` in `$spacing` map.";
+    } @else {
+        @return map-get($spacing, $size);
+    }
+    @return null;
+}
