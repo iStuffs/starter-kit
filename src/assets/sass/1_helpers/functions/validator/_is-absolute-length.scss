@@ -10,6 +10,7 @@
 /// @require is-number
 /// @require $UNITS
 ////
+
 @function is-absolute-length($value) {
     @return is-number($value) and index(map-get($UNITS, 'absolute-length'), unit($value)) !=null;
 }

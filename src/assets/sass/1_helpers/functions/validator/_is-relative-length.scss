@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 
-///
+////
 /// Check if $value is a relative length
 ///
 /// @group validators
@@ -10,6 +10,7 @@
 ///
 /// @require is-number
 /// @require $UNITS
+////
 
 @function is-relative-length($value) {
     @return is-number($value) and index(map-get($UNITS, 'relative-length'), unit($value)) !=null;

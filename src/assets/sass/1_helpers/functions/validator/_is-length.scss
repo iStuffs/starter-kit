@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 
-///
+////
 /// Check if $value is a length
 ///
 /// @group validators
@@ -10,6 +10,7 @@
 ///
 /// @require is-relative-length
 /// @require is-absolute-length
+////
 
 @function is-length($value) {
     @return is-relative-length($value) or is-absolute-length($value);

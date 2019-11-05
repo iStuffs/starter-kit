@@ -1,9 +1,19 @@
-/// @require ratio
+@charset 'UTF-8';
+////
+/// Hover mixin to select all special states and disable default outline
+///
+/// @require $ratios
+/// @group variables
+/// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
+////
+
 
 $typography-ratio: ratios() !default;
 $typography-base: 1.6rem !default;
 $typography-line-height: 1.3 !default;
 
+/// $typography
+/// @type List
 $typography: (
     'ratio': $typography-ratio,
     'base': $typography-base,

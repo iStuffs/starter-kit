@@ -1,21 +1,34 @@
+@charset 'UTF-8';
 ////
 /// Minimalist grid system with flexbox
 ///
-/// @group grid
-/// @author Samuel DIDIER-LAURENT
 /// assumption box-sizing is border-box
+///
+/// @group Grid
+/// @author Samuel DIDIER-LAURENT
 ////
 
-/// variables
-$grid-num-columns: 12;
-$grid-gutter: 2rem;
 
+// Variables
+// ---------
+
+/// @type Number
+$grid-num-columns: 12 !default;
+
+/// @type Length
+$grid-gutter: 2rem !default;
+
+/// @type Map
 $grid: (
-    'num-columns': 12,
-    'gutter': 2rem
-);
+    'num-columns': $grid-num-columns,
+    'gutter': $grid-gutter
+) !default;
 
-/// getter function
+
+// Getters
+// -------
+
+/// $grid map getter function
 @function grid($value) {
     @if not map-has-key($grid, $value) {
         @warn "No easing type found for `#{$value}` in `$grid` map.";
@@ -23,7 +36,11 @@ $grid: (
     @return map-get($grid, $value);
 }
 
-/// mixins
+
+// Mixins
+// ------
+
+/// grid-container
 @mixin grid-container(){
     display: flex;
     justify-content: space-between;
@@ -32,6 +49,8 @@ $grid: (
         flex: 0 1 auto;
     }
 }
+
+/// grid-colunms
 @mixin grid-colunms($num-columns-width: 1, $max-columns: grid('num-columns'), $gutter: grid('gutter')) {
     @if comparable($num-columns-width, $max-columns) {
         width: calc(($num-columns-width / $max-columns * 100%) - $grid-gutter);
@@ -41,10 +60,15 @@ $grid: (
     margin-bottom: $grid-gutter;
 }
 
-/// utilities
+// Utility Classes
+// ---------------
+
+/// grid
 .grid {
     @include grid-container;
 }
+
+/// column
 .column {
     flex: 0 1 auto;
 }
@@ -55,10 +79,12 @@ $grid: (
     }
 }
 
+/// grid first - put element in first
 .grid-first{
     order: -1;
 }
 
+/// grid last - push element after
 .grid-last {
     order: 1;
 }

@@ -1,3 +1,16 @@
+@charset 'UTF-8';
+///
+/// Simple power function
+///
+/// @group numbers
+///
+/// @param {Number} $number
+/// @param {Number} $exponent
+/// @return {Number}
+///
+/// @link https://css-tricks.com/snippets/sass/power-function/
+///
+
 @function simple-pow($number, $exponent) {
   $value: 1;
 

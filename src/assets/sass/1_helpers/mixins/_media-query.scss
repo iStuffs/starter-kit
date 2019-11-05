@@ -7,7 +7,11 @@
 ////
 
 
-/// $MEDIA-TYPES
+// Variables and CONSTANTS
+// -----------------------
+
+/// $MEDIA-TYPES ('all' | 'print' | 'screen' | 'speech')
+/// @type Map
 /// @link https://www.w3.org/TR/mediaqueries-4/#media-types
 $MEDIA-TYPES: (
     'all',
@@ -24,7 +28,9 @@ $MEDIA-TYPES: (
     'tv'
 ) !default;
 
-@function media-types($value:'screen'){
+/// media-types
+/// require $MEDIA-TYPES
+@function media-types($value:'screen') {
     @if type-of($MEDIA-TYPES) != list {
         @warn "There is no `$MEDIA-TYPES` list.";
     } @else if index($MEDIA-TYPES, $value) == null {
@@ -35,9 +41,11 @@ $MEDIA-TYPES: (
     @return null;
 }
 
+/// $PIXEL
+/// @type Length
+$PIXEL: .0625rem;
 /// $BREAKPOINTS
 /// @type List
-$PIXEL: .0625rem;
 $BREAKPOINTS: (
     'mobile': 20rem,  // 320px
     'tablet': 48rem,  // 768px
@@ -58,10 +66,11 @@ $BREAKPOINTS: (
 
 /// Mixin to manage responsive breakpoints
 /// @author [Samuel DIDIER-LAURENT](https://github.com/iStuffs)
-/// @param {String} $breakpoint - Breakpoint name
+/// @param {String} $breakpoint ['desktop'] - Breakpoint name ('mobile' | 'tablet' | 'desktop' | 'wide')
+/// @param {String} $media ['screen'] - Media name
 /// @require $BREAKPOINTS
 
-@mixin media($breakpoint, $media:'screen') {
+@mixin media($breakpoint: 'desktop', $media:'screen') {
     @media #{media-types($media)} and (min-width: breakpoints($breakpoint)) {
         @content;
     }
