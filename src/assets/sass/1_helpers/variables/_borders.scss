@@ -28,11 +28,11 @@ $border-radius: 0.5rem !default;
 /// @prop { Number } radius [$border-radius] - Default value of border-radius
 
 $borders: (
-    all: $border-width $border-style $border-color,
-    width: $border-width,
-    style: $border-style,
-    color: $border-color,
-    radius: $border-radius
+    'all': $border-width $border-style $border-color,
+    'width': $border-width,
+    'style': $border-style,
+    'color': $border-color,
+    'radius': $border-radius
 ) !default;
 
 /// returns the value of the asked key for the `$borders` map

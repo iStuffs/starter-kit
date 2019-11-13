@@ -1,0 +1,42 @@
+:root {
+    // Animations
+    @each $key, $animation in $animations {
+        --animation-#{$key}: #{$animation};
+    }
+
+    // Borders
+    @each $key, $border in $borders {
+        --border-#{$key}: #{$border};
+    }
+
+    // Colors
+    @each $key, $color in $colors {
+        --color-#{$key}: #{$color};
+    }
+
+    // Easings
+    @each $key, $ease in $EASINGS {
+        --#{$key}: #{$ease};
+    }
+
+    // Ratios
+    @each $key, $ratio in $ratios {
+        --ratio-#{$key}: #{$ratio};
+    }
+
+    // Spacing
+    @each $key, $space in $spacing {
+        --spacing-#{$key}: #{$space};
+    }
+
+    // Typography
+    @each $key, $typo in $typography {
+        --typography-#{$key}: #{$typo};
+    }
+
+    // Z-index
+    @each $key, $deep in $z-index {
+        --depth-#{$key}: #{$deep};
+    }
+
+}

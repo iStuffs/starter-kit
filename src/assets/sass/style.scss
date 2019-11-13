@@ -7,14 +7,14 @@
 
 // Helpers
 // Helpers - vendors
-@import '1_helpers/vendors/bourbon.scss';
+@import '1_helpers/vendors/bourbon';
 @import '1_helpers/vendors/animate-css/animate-css';
 
 // Helpers - variables and map getters
 @import '1_helpers/variables/*.scss';
 
 // Helpers - functions
-@import '1_helpers/functions.scss';
+@import '1_helpers/functions';
 
 // Helpers - mixins
 @import '1_helpers/mixins/*.scss';
@@ -24,6 +24,7 @@
 
 // Base
 @import '2_base/reset';
+@import '2_base/css-custom-properties';
 @import '2_base/typography';
 @import '2_base/base';
 @import '2_base/icons/base';
