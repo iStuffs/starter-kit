@@ -55,7 +55,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
     "bootstrap-reboot-importer": "^1.0.1",
-    "bourbon": "^6.0.0",
+    "bourbon": "^7.0.0",
     "panini": "^1.6.3",
     "sassy-normalize": "^8.0.4"
   },
