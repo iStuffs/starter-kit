@@ -20,22 +20,22 @@
   "author": "iStuffs: Samuel DIDIER-LAURENT <istuffs@gmail.com> (https://istuffs.be)",
   "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/register": "^7.8.3",
-    "babel-loader": "^8.0.6",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/register": "^7.9.0",
+    "babel-loader": "^8.1.0",
     "browser-sync": "^2.26.7",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eyeglass": "^2.4.2",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eyeglass": "^3.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
-    "gulp-clean-css": "^4.2.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "^7.1.0",
-    "gulp-load-plugins": "^2.0.2",
+    "gulp-load-plugins": "^2.0.3",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.1",
     "gulp-sass": "^4.0.2",
@@ -45,19 +45,19 @@
     "rimraf": "^3.0.2",
     "sassdoc": "^2.7.1",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.41.6",
+    "webpack": "^4.42.1",
     "webpack-stream": "^5.2.1",
-    "yargs": "^15.1.0"
+    "yargs": "^15.3.1"
   },
   "directories": {
     "doc": "docs"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.8.3",
+    "@babel/polyfill": "^7.8.7",
     "bootstrap-reboot-importer": "^1.0.1",
-    "bourbon": "^6.0.0",
+    "bourbon": "^7.0.0",
     "panini": "^1.6.3",
-    "sassy-normalize": "^8.0.4"
+    "sassy-normalize": "^8.0.5"
   },
   "repository": {
     "type": "git",
