@@ -45,7 +45,7 @@
     "rimraf": "^3.0.2",
     "sassdoc": "^2.7.1",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.42.1",
+    "webpack": "^5.12.3",
     "webpack-stream": "^5.2.1",
     "yargs": "^15.3.1"
   },
