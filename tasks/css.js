@@ -16,7 +16,6 @@ const {
 // { autoprefixer, cleanCss, htmlmin, if, imagemin, notify, plumber, sass, sassGlob, uglify, zip }
 const $ = plugins();
 
-
 /* CSS */
 function css() {
     return src(PATH.src + CSS.src, { sourcemaps: !production })
