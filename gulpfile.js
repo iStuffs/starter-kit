@@ -27,7 +27,6 @@ const {
     serve,
 } = require('./tasks');
 
-
 /* Archive */
 const archiveTask = series(archive);
 
